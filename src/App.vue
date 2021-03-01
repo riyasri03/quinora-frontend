@@ -18,11 +18,16 @@
       </li>
     </ul>
     <input type="text" placeholder="Title" v-model="title">
+    <child-component/>
   </div>
 </template>
 
 <script>
+import childComponent from './childComponent.vue'
 export default {
+  components: {
+    childComponent: childComponent
+  },
   name: 'App',
   data () {
     return {
