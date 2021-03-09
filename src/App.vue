@@ -1,24 +1,14 @@
 <template>
   <div id="app">
-    <child-component @childClicked="childClickedEvent" name="Child one"/>
+    <navbar />
   </div>
 </template>
 
 <script>
-import childComponent from './childComponent.vue'
+import navbar from './components/navbar.vue'
 export default {
   components: {
-    childComponent: childComponent
-  },
-  name: 'App',
-  data () {
-    return {
-    }
-  },
-  methods: {
-    childClickedEvent () {
-      alert('child clicked event')
-    }
+    navbar
   }
 }
 </script>
