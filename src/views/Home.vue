@@ -11,6 +11,7 @@
               <answerComponentHome :answer="answer" :src="asrc" />
               <footComponentQAHome :comments="comments" :upvotes="upvotes" :downvotes="downvotes" />
             </div>
+            <div id="pagination-wrapper"></div>
           </div>
         </td>
         <td class="right"></td>
@@ -19,6 +20,7 @@
   </div>
 </template>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 import sidebar from '@/components/sidebar.vue'
 import questionComponentHomeVue from '../components/questionComponentHome.vue'
