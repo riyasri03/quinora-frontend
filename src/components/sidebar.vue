@@ -3,7 +3,7 @@
       <div class="inner-container">
         <div v-for="category in categories" :key="category.id" class="parent">
             <img :src="category.src" class="image-css">
-            <button class="btn">{{ category.name }}</button>
+            <button class="btn" @click="categorySelect" :id="category.name" :value="category.name">{{ category.name }}</button>
         </div>
       </div>
   </div>
@@ -33,6 +33,11 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    categorySelect (event) {
+      console.log(event.target.id)
+    }
   }
 }
 </script>
@@ -46,7 +51,8 @@ export default {
     }
     .btn{
         appearance: none;
-        border-radius: 5px;
+        border-radius: 10px;
+        width: fit-content;
         border: 1px solid white;
         background: whitesmoke;
         cursor: pointer;

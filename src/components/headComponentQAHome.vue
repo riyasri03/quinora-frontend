@@ -21,6 +21,8 @@ export default {
         padding: 10px;
         border: 1px solid whitesmoke;
         border-radius: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
     }
     .hardcoded-text{
         font-size: 12px;

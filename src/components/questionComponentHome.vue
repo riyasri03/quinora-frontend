@@ -1,5 +1,5 @@
 <template>
-  <div class="conatiner">
+  <div class="ques-conatiner">
       <div class="question">
           Question: {{ question }}
       </div>
@@ -28,11 +28,12 @@ export default {
     }
     .question-image{
         text-align: center;
+        margin-left: 10px;
+        margin-right: 10px;
         background: whitesmoke;
         border-radius: 10px;
     }
-    .container{
-        padding: 10px;
+    .ques-container{
         margin: 10px;
         border: 1px solid whitesmoke;
         border-radius: 10px;

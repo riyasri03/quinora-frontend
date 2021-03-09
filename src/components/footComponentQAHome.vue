@@ -23,6 +23,8 @@ export default {
         border: 1px solid whitesmoke;
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
     }
     .upvote-placement{
         cursor: pointer;

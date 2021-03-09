@@ -31,6 +31,8 @@ export default {
         background: whitesmoke;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
     }
     .container{
         padding: 10px;
