@@ -61,8 +61,8 @@ export default {
         vertical-align: middle;
         margin-bottom: 10px;
         margin-right: 5px;
-        width: 30px;
-        height: 30px;
+        width: 50px;
+        height: 50px;
         border-radius: 5px;
     }
 </style>

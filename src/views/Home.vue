@@ -22,6 +22,7 @@
   </div>
 </template>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 import sidebar from '@/components/sidebar.vue'
 import questionComponentHomeVue from '../components/questionComponentHome.vue'
