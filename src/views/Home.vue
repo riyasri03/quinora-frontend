@@ -5,14 +5,16 @@
         <td class="left"><sidebar /></td>
         <td class="middle">
           <div id="pagination-content">
-            <div v-for="c in count" :key="c.id" class="question-answer-card">
-              <headComponentQAHome :username="username" />
-              <questionComponentHome :question="question" :src="src"/>
-              <answerComponentHome :answer="answer" :src="asrc" />
-              <footComponentQAHome :comments="comments" :upvotes="upvotes" :downvotes="downvotes" />
+            <div v-for="item in pageOfItems" :key="item.id" class="question-answer-card">
+              <headComponentQAHome :username="item.username" />
+              <questionComponentHome :question="item.question" :src="item.src"/>
+              <answerComponentHome :answer="item.answer" :src="item.asrc" />
+              <footComponentQAHome :comments="item.comments" :upvotes="item.upvotes" :downvotes="item.downvotes" />
             </div>
-            <div id="pagination-wrapper"></div>
           </div>
+          <center class="pagination-placement">
+            <jw-pagination :pageSize=5 :initialPage=count :items="response" @changePage="onChangePage" :styles="customStyles" :labels="customLabels"></jw-pagination>
+          </center>
         </td>
         <td class="right"></td>
         </tr>
@@ -20,26 +22,156 @@
   </div>
 </template>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 import sidebar from '@/components/sidebar.vue'
 import questionComponentHomeVue from '../components/questionComponentHome.vue'
 import answerComponentHome from '../components/answerComponentHome.vue'
 import footComponentQAHome from '../components/footComponentQAHome.vue'
 import headComponentQAHome from '../components/headComponentQAHome.vue'
+const customStyles = {
+  ul: {
+
+  },
+  li: {
+    display: 'inline-block'
+  },
+  a: {
+
+  }
+}
+const customLabels = {
+  first: '<<',
+  last: '>>',
+  previous: '<',
+  next: '>'
+}
 export default {
   name: 'home',
   data () {
     return {
-      question: 'What are we doing here?',
-      src: require('../assets/space.jpg'),
-      answer: 'We are making a Quora clone.',
-      asrc: require('../assets/space.jpg'),
-      count: 5,
-      comments: 10,
-      upvotes: 200,
-      downvotes: 1,
-      username: 'Riya'
+      i: 1,
+      count: localStorage.getItem('count'),
+      customStyles,
+      customLabels,
+      response: [
+        {
+          question: 'What are we doing here?',
+          src: require('../assets/space.jpg'),
+          answer: 'We are making a Quora clone.',
+          asrc: require('../assets/space.jpg'),
+          comments: 10,
+          upvotes: 200,
+          downvotes: 1,
+          username: 'Riya'
+        },
+        {
+          question: 'What are we doing here?',
+          src: require('../assets/space.jpg'),
+          answer: 'We are making a Quora clone.',
+          asrc: require('../assets/space.jpg'),
+          comments: 10,
+          upvotes: 200,
+          downvotes: 1,
+          username: 'Riya'
+        },
+        {
+          question: 'What are we doing here?',
+          src: require('../assets/space.jpg'),
+          answer: 'We are making a Quora clone.',
+          asrc: require('../assets/space.jpg'),
+          comments: 10,
+          upvotes: 200,
+          downvotes: 1,
+          username: 'Riya'
+        },
+        {
+          question: 'What are we doing here?',
+          src: require('../assets/space.jpg'),
+          answer: 'We are making a Quora clone.',
+          asrc: require('../assets/space.jpg'),
+          comments: 10,
+          upvotes: 200,
+          downvotes: 1,
+          username: 'Riya'
+        },
+        {
+          question: 'What are we doing here?',
+          src: require('../assets/space.jpg'),
+          answer: 'We are making a Quora clone.',
+          asrc: require('../assets/space.jpg'),
+          comments: 10,
+          upvotes: 200,
+          downvotes: 1,
+          username: 'Riya'
+        },
+        {
+          question: 'What are we doing here?',
+          src: require('../assets/space.jpg'),
+          answer: 'We are making a Quora clone.',
+          asrc: require('../assets/space.jpg'),
+          comments: 10,
+          upvotes: 200,
+          downvotes: 1,
+          username: 'Riya'
+        },
+        {
+          question: 'What are we doing here?',
+          src: require('../assets/space.jpg'),
+          answer: 'We are making a Quora clone.',
+          asrc: require('../assets/space.jpg'),
+          comments: 10,
+          upvotes: 200,
+          downvotes: 1,
+          username: 'Riya'
+        },
+        {
+          question: 'What are we doing here?',
+          src: require('../assets/space.jpg'),
+          answer: 'We are making a Quora clone.',
+          asrc: require('../assets/space.jpg'),
+          comments: 10,
+          upvotes: 200,
+          downvotes: 1,
+          username: 'Riya'
+        },
+        {
+          question: 'What are we doing here?',
+          src: require('../assets/space.jpg'),
+          answer: 'We are making a Quora clone.',
+          asrc: require('../assets/space.jpg'),
+          comments: 10,
+          upvotes: 200,
+          downvotes: 1,
+          username: 'Riya'
+        },
+        {
+          question: 'What are we doing here?',
+          src: require('../assets/space.jpg'),
+          answer: 'We are making a Quora clone.',
+          asrc: require('../assets/space.jpg'),
+          comments: 10,
+          upvotes: 200,
+          downvotes: 1,
+          username: 'Riya'
+        },
+        {
+          question: 'What are we doing here?',
+          src: require('../assets/space.jpg'),
+          answer: 'We are making a Quora clone.',
+          asrc: require('../assets/space.jpg'),
+          comments: 10,
+          upvotes: 200,
+          downvotes: 1,
+          username: 'Riya'
+        }
+      ],
+      pageOfItems: []
+    }
+  },
+  methods: {
+    onChangePage (pageOfItems) {
+      // update page of items
+      this.pageOfItems = pageOfItems
     }
   },
   components: {
@@ -54,27 +186,31 @@ export default {
 
 <style scoped>
     table{
-        width: 100%;
+      width: 100%;
+      margin-top: 100px;
     }
     .left{
-        width: 25%;
-        top: 28px;
-        margin-left: -60px;
-        position: fixed;
+      width: 25%;
+      top: 100px;
+      margin-left: -60px;
+      position: fixed;
     }
     .middle{
-        width: 50%;
+      width: 50%;
     }
     .right{
-        width: 25%;
+      width: 25%;
     }
     table td, table td * {
-        vertical-align: top;
+      vertical-align: top;
     }
     .question-answer-card{
-        margin-bottom: 30px;
-        padding: 10px;
-        border: 1px solid lightgray;
-        border-radius: 10px;
+      margin-bottom: 30px;
+      padding: 10px;
+      border: 1px solid lightgray;
+      border-radius: 10px;
+    }
+    .pagination-placement{
+      margin-bottom: 100px;
     }
 </style>
