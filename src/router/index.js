@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import home from '../views/Home.vue'
 import login from '@/views/login.vue'
 import categories from '@/views/categories.vue'
+import questions from '@/views/questions.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/categories',
     name: 'categories',
     component: categories
+  },
+  {
+    path: '/questions',
+    name: 'questions',
+    component: questions
   }
 ]
 

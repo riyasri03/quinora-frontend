@@ -28,7 +28,6 @@ export default {
     }
     .question-image{
         text-align: center;
-        padding: 10px;
         background: whitesmoke;
         border-radius: 10px;
     }
