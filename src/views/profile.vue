@@ -26,6 +26,7 @@
         <br>
          <div id="employmentDivision" v-show="credShow" class="credentials">
         <br>
+         <p v-for="item in items" :key="item.message">
          <label for="Position"> Position </label>
          <input type="text" id="Position">
          <br>
@@ -52,11 +53,9 @@
          </select>
          <br>
          <br>
-         <label for="work"> Currently working here </label>
-         <input type="checkbox" id="work">
-         <br>
-         <br>
+         </p>
          <button>Save</button>
+         <button @click="AddEmployment">Add</button>
          <br>
         </div>
         <br>
@@ -64,16 +63,13 @@
         <br>
         <div id="educationDivision" v-show="eduShow" class="credentials">
         <br>
+         <p v-for="item in items1" :key="item.messsage">
          <label for="school"> School </label>
          <input type="text" id="school">
          <br>
          <br>
          <label for="primary"> Primary </label>
          <input type="text" id="primary">
-         <br>
-         <br>
-         <label for="secondary"> Secondary </label>
-         <input type="text" id="secondary">
          <br>
          <br>
          <label for="Start Year"> Graduation Year </label>
@@ -85,45 +81,14 @@
          </select>
          <br>
          <br>
+         <label for="degree">Degree</label>
+         <input type="text" id="degree">
+         </p>
          <button>Save</button>
+         <button @click="AddEducation">Add</button>
          <br>
         </div>
         <br>
-        <div>
-        <div><i class="fa fa-map-marker" @click="AddLocationCredentials"></i> Add Location Credentials</div>
-        <br>
-        <div id="locationDivision" v-show="locationShow" class="credentials">
-         <br>
-         <label for="loaction"> Location(required) </label>
-         <input type="text" id="location">
-         <br>
-         <br>
-         <label for="Start Year"> Start Year </label>
-         <select name="Year" id="Year">
-         <option value="2021">2021</option>
-         <option value="2020">2020</option>
-         <option value="2019">2019</option>
-         <option value="2018">2018</option>
-         </select>
-         <br>
-         <br>
-         <label for="End Year"> End Year </label>
-         <select name="Year" id="Year">
-         <option value="2021">2021</option>
-         <option value="2020">2020</option>
-         <option value="2019">2019</option>
-         <option value="2018">2018</option>
-         </select>
-         <br>
-         <br>
-         <label for="live"> I currently live here </label>
-         <input type="checkbox" id="work">
-         <br>
-         <br>
-         <button>Save</button>
-         <br><br>
-        </div>
-        </div>
     </div>
 </div>
 </div>
@@ -136,7 +101,13 @@ export default {
     return {
       credShow: false,
       eduShow: false,
-      locationShow: false
+      locationShow: false,
+      state: 0,
+      state1: 0,
+      state2: 0,
+      items: [],
+      items1: [],
+      items2: []
     }
   },
   methods: {
@@ -166,6 +137,19 @@ export default {
       } else {
         x.style.display = 'none'
       }
+    },
+    AddEmployment () {
+      console.log('Clicked')
+      this.state += 1
+      this.items.push(this.state)
+    },
+    AddEducation () {
+      this.state1 += 1
+      this.items1.push(this.state1)
+    },
+    AddLocation () {
+      this.state2 += 1
+      this.items2.push(this.state2)
     }
   }
 }
