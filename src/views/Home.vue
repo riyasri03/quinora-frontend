@@ -1,10 +1,11 @@
 <template>
   <div>
-    <table cellspacing="20px">
+    <table id="table" cellspacing="20px">
         <tr>
         <td class="left"><sidebar /></td>
         <td class="middle">
           <div id="pagination-content">
+            <askQuestionHome :username="currentUser" />
             <div v-for="item in pageOfItems" :key="item.id" class="question-answer-card">
               <headComponentQAHome :username="item.username" />
               <questionComponentHome :question="item.question" :src="item.src"/>
@@ -29,6 +30,7 @@ import questionComponentHomeVue from '../components/questionComponentHome.vue'
 import answerComponentHome from '../components/answerComponentHome.vue'
 import footComponentQAHome from '../components/footComponentQAHome.vue'
 import headComponentQAHome from '../components/headComponentQAHome.vue'
+import askQuestionHome from '../components/askQuestionHome.vue'
 const customStyles = {
   ul: {
 
@@ -50,6 +52,7 @@ export default {
   name: 'home',
   data () {
     return {
+      currentUser: 'Siddhant',
       i: 1,
       count: localStorage.getItem('count'),
       customStyles,
@@ -180,13 +183,14 @@ export default {
     questionComponentHome: questionComponentHomeVue,
     answerComponentHome: answerComponentHome,
     footComponentQAHome: footComponentQAHome,
-    headComponentQAHome: headComponentQAHome
+    headComponentQAHome: headComponentQAHome,
+    askQuestionHome: askQuestionHome
   }
 }
 </script>
 
 <style scoped>
-    table{
+    #table{
       width: 100%;
       margin-top: 100px;
     }

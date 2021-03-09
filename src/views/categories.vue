@@ -144,7 +144,7 @@ export default {
         height: 100vh;
     }
     .parent{
-        width: 760px;
+        width: 762px;
         border: 1px solid lightgray;
         border-radius: 10px
     }
@@ -152,6 +152,7 @@ export default {
         float: left;
         padding-left: 10px;
         padding-right: 10px;
+        padding: 10px;
         width: 100%;
         box-sizing: border-box;
         border: 1px solid white;
