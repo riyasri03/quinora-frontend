@@ -99,24 +99,24 @@ input[type=text] {
     right:7%;
     cursor: pointer;
 }
-ul {
+.nav ul {
     margin:0;
     padding:0;
     display: flex;
     flex-direction: row;
 }
-li {
+.nav ul li {
     display: block;
     color:#808080;
 }
-li :hover {
+.nav ul li :hover {
    background-color:#F1F2F2 ;
 }
-li {
+.nav ul li {
     cursor: pointer;
 }
 
-li img {
+.nav ul li img {
     width:30px;
     height: 25px;
     padding:10px 17px;
