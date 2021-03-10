@@ -1,32 +1,31 @@
 <template>
-  <div>
-      <div class="i-div-post-top">
-        <label for="i-div-img">
-          <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png" class="image-upload-icon-css">
+  <div class="q-div">
+      <div class="q-div-post-top">
+        <label for="q-div-img">
+          <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-image-512.png" class="q-image-upload-icon-css">
         </label>
-        <input type="file" class="i-div-img" accept="image/*" @change="previewImage">
+        <input type="file" class="q-div-img" accept="image/*" @change="previewImage">
       </div>
-      <div class="i-div-image-preview" v-if="imageData.length > 0">
-        <img :src="imageData" class="i-div-preview-img">
+      <div class="q-div-image-preview" v-if="imageData.length > 0">
+        <img :src="imageData" class="q-div-preview-img">
       </div>
-      <textarea class="i-div-input" placeholder="Add Content." cols="70" v-model="answerText">
-      </textarea>
-      <div class="i-div-post">
-          <button class="i-div-post-btn" @click="onSubmit">Post</button>
+      <div class="q-div-parent">
+        <textarea class="q-div-input" v-model="questionText" placeholder="Ask your question here.">
+        </textarea>
+      </div>
+      <div class="q-div-post">
+          <button class="q-div-post-btn" @click="onSubmit">Post</button>
       </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'inputWidget',
-  props: {
-    cid: Number
-  },
+  name: 'questionsInputWidget',
   data () {
     return {
       imageData: '',
-      answerText: ''
+      questionText: ''
     }
   },
   methods: {
@@ -42,7 +41,7 @@ export default {
     },
     onSubmit () {
       console.log(this.imageData)
-      console.log(this.answerText)
+      console.log(this.questionText)
     }
   }
 }
@@ -52,26 +51,33 @@ export default {
     *{
       outline: none;
     }
-    .i-div-input{
+    .q-div{
+        width: 100%
+    }
+    .q-div-parent{
+        width: 100%
+    }
+    .q-div-input{
+      width: calc(100% - 20px);
       min-height: 100px;
       border: 1px solid lightgray;
       padding: 10px;
       margin-left: 10px;
       margin-right: 10px;
     }
-    .i-div-post{
+    .q-div-post{
       border: 1px solid lightgray;
       border-top: 0px;
       margin-left: 10px;
       margin-right: 10px;
       margin-bottom: 10px;
     }
-    .i-div-post-top{
+    .q-div-post-top{
       border: 1px solid lightgray;
       margin-left: 10px;
       margin-right: 10px;
     }
-    .i-div-post-btn{
+    .q-div-post-btn{
       margin-top: 10px;
       padding-left: 10px;
       padding-right: 10px;
@@ -84,28 +90,28 @@ export default {
       color: #4ca7ff;
       cursor: pointer;
     }
-    .i-div-post-btn:focus{
+    .q-div-post-btn:focus{
       outline: none;
     }
-    .i-div-post-btn:hover{
+    .q-div-post-btn:hover{
       background-color: #4ca7ff;
       color: white;
     }
-    .i-div-img{
-      appearance: none;
-      margin: 5px;
-      cursor: pointer;
-    }
-    .image-upload-icon-css{
+    .q-image-upload-icon-css{
       width: 18px;
       height: 20px;
       margin-top: 8px;
       margin-left: 10px;
       cursor: pointer;
     }
-    .i-div-preview-img{
+    .q-div-preview-img{
       width: 100px;
       height: 100px;
       margin: 20px;
+    }
+    .q-div-img{
+      appearance: none;
+      margin: 5px;
+      cursor: pointer;
     }
 </style>

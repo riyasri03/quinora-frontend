@@ -1,5 +1,6 @@
 <template>
   <div>
+    <navbar/>
     <table class="q-table" cellpadding="40px">
         <tr>
             <td class="q-left">
@@ -10,7 +11,7 @@
                 <div v-for="item in response" :key="item.id" class="q-container">
                   <questionComponentHome :question="item.question" :src="item.src" />
                   <button class="a-btn" @click="toggleInput" :value="item.qid">Answer</button>
-                  <inputWidget :id="item.qid" class="q-initial-style"/>
+                  <inputWidget :id="item.qid" :cid="item.id" class="q-initial-style"/>
                 </div>
                 <hr>
               </div>
@@ -30,6 +31,7 @@
 
 <script>
 import inputWidget from '../components/inputWidget.vue'
+import navbar from '../components/navbar.vue'
 import questionComponentHome from '../components/questionComponentHome.vue'
 export default {
   name: 'questions',
@@ -100,7 +102,8 @@ export default {
   },
   components: {
     questionComponentHome: questionComponentHome,
-    inputWidget: inputWidget
+    inputWidget: inputWidget,
+    navbar: navbar
   }
 }
 </script>

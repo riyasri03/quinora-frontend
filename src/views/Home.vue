@@ -1,16 +1,22 @@
 <template>
   <div>
+    <navbar />
     <table id="table" cellspacing="20px">
         <tr>
         <td class="left"><sidebar /></td>
         <td class="middle">
           <div id="pagination-content">
-            <askQuestionHome :username="currentUser" />
+            <div @click="toggleQuestion">
+              <askQuestionHome :username="currentUser" />
+            </div>
+            <div v-show="questionShow" class="question-prompt-container">
+              <questionsInputWidget class="question-prompt"/>
+            </div>
             <div v-for="item in pageOfItems" :key="item.id" class="question-answer-card">
               <headComponentQAHome :username="item.username" />
               <questionComponentHome :question="item.question" :src="item.src"/>
               <answerComponentHome :answer="item.answer" :src="item.asrc" />
-              <footComponentQAHome :comments="item.comments" :upvotes="item.upvotes" :downvotes="item.downvotes" />
+              <footComponentQAHome :comments="item.comments" :upvotes="item.upvotes" :downvotes="item.downvotes" :cid="item.qid+''+item.aid" />
             </div>
           </div>
           <center class="pagination-placement">
@@ -31,6 +37,8 @@ import answerComponentHome from '../components/answerComponentHome.vue'
 import footComponentQAHome from '../components/footComponentQAHome.vue'
 import headComponentQAHome from '../components/headComponentQAHome.vue'
 import askQuestionHome from '../components/askQuestionHome.vue'
+import navbar from '../components/navbar.vue'
+import QuestionsInputWidget from '../components/questionsInputWidget.vue'
 const customStyles = {
   ul: {
 
@@ -57,8 +65,11 @@ export default {
       count: localStorage.getItem('count'),
       customStyles,
       customLabels,
+      questionShow: false,
       response: [
         {
+          qid: 1,
+          aid: 1,
           question: 'What are we doing here?',
           src: require('../assets/space.jpg'),
           answer: 'We are making a Quora clone.',
@@ -69,6 +80,8 @@ export default {
           username: 'Riya'
         },
         {
+          qid: 2,
+          aid: 2,
           question: 'What are we doing here?',
           src: require('../assets/space.jpg'),
           answer: 'We are making a Quora clone.',
@@ -79,6 +92,8 @@ export default {
           username: 'Riya'
         },
         {
+          qid: 3,
+          aid: 3,
           question: 'What are we doing here?',
           src: '',
           answer: 'We are making a Quora clone.',
@@ -89,6 +104,8 @@ export default {
           username: 'Riya'
         },
         {
+          qid: 4,
+          aid: 4,
           question: 'What are we doing here?',
           src: require('../assets/space.jpg'),
           answer: 'We are making a Quora clone.',
@@ -99,6 +116,8 @@ export default {
           username: 'Riya'
         },
         {
+          qid: 5,
+          aid: 5,
           question: 'What are we doing here?',
           src: require('../assets/space.jpg'),
           answer: 'We are making a Quora clone.',
@@ -109,56 +128,7 @@ export default {
           username: 'Riya'
         },
         {
-          question: 'What are we doing here?',
-          src: require('../assets/space.jpg'),
-          answer: 'We are making a Quora clone.',
-          asrc: require('../assets/space.jpg'),
-          comments: 10,
-          upvotes: 200,
-          downvotes: 1,
-          username: 'Riya'
-        },
-        {
-          question: 'What are we doing here?',
-          src: require('../assets/space.jpg'),
-          answer: 'We are making a Quora clone.',
-          asrc: require('../assets/space.jpg'),
-          comments: 10,
-          upvotes: 200,
-          downvotes: 1,
-          username: 'Riya'
-        },
-        {
-          question: 'What are we doing here?',
-          src: require('../assets/space.jpg'),
-          answer: 'We are making a Quora clone.',
-          asrc: require('../assets/space.jpg'),
-          comments: 10,
-          upvotes: 200,
-          downvotes: 1,
-          username: 'Riya'
-        },
-        {
-          question: 'What are we doing here?',
-          src: require('../assets/space.jpg'),
-          answer: 'We are making a Quora clone.',
-          asrc: require('../assets/space.jpg'),
-          comments: 10,
-          upvotes: 200,
-          downvotes: 1,
-          username: 'Riya'
-        },
-        {
-          question: 'What are we doing here?',
-          src: require('../assets/space.jpg'),
-          answer: 'We are making a Quora clone.',
-          asrc: require('../assets/space.jpg'),
-          comments: 10,
-          upvotes: 200,
-          downvotes: 1,
-          username: 'Riya'
-        },
-        {
+          qid: 6,
           question: 'What are we doing here?',
           src: require('../assets/space.jpg'),
           answer: 'We are making a Quora clone.',
@@ -176,6 +146,14 @@ export default {
     onChangePage (pageOfItems) {
       // update page of items
       this.pageOfItems = pageOfItems
+    },
+    toggleQuestion () {
+      console.log('sdfsdfa')
+      if (this.questionShow) {
+        this.questionShow = false
+      } else {
+        this.questionShow = true
+      }
     }
   },
   components: {
@@ -184,7 +162,9 @@ export default {
     answerComponentHome: answerComponentHome,
     footComponentQAHome: footComponentQAHome,
     headComponentQAHome: headComponentQAHome,
-    askQuestionHome: askQuestionHome
+    askQuestionHome: askQuestionHome,
+    navbar: navbar,
+    QuestionsInputWidget
   }
 }
 </script>
@@ -197,7 +177,7 @@ export default {
     .left{
       width: 25%;
       top: 100px;
-      margin-left: -60px;
+      margin-left: -80px;
       position: fixed;
     }
     .middle{
@@ -217,5 +197,12 @@ export default {
     }
     .pagination-placement{
       margin-bottom: 100px;
+    }
+    .question-prompt-container{
+      padding-top: 10px;
+      border: 1px solid whitesmoke;
+      margin-bottom: 40px;
+      margin-top: -15px;
+      border-radius: 10px;
     }
 </style>
