@@ -3,7 +3,8 @@
   <div class="column side" style="background-color:white;"></div>
   <div class="column middle">
       <div >
-           <img class="profileImage" src="../assets/userprofile2.png" alt="imagehere">
+           <img class="profileImage" id="image" src="../assets/userprofile2.png" alt="imagehere">
+           <input  type="file" @click="upload" id="picture" name="picture">
           <p>Write a description about yourself</p>
         </div>
         <br>
@@ -251,6 +252,15 @@ export default {
       } else {
         x.style.display = 'none'
       }
+    },
+    upload () {
+      var inputElement = document.querySelector('input')
+      var imgElement = document.querySelector('img')
+      inputElement.addEventListener('change', function () {
+        var url = URL.createObjectURL(inputElement.files[0])
+        imgElement.src = url
+        console.log(imgElement.src)
+      })
     },
     postData () {
       console.log(this.firstName)
