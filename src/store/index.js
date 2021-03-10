@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import router from '../router'
 
 Vue.use(Vuex)
 
@@ -94,6 +95,38 @@ export default new Vuex.Store({
       }
       axios(axiosConfig)
         .then((e) => console.log(e.data))
+        .catch(e => console.log(e))
+    },
+    setSignUpAction ({ commit, state }, object) {
+      const axiosConfig = {
+        method: 'post',
+        baseURL: 'http://10.177.68.110:808/',
+        url: '/users/sign-up',
+        data: {
+          username: object.username,
+          password: object.password
+        }
+      }
+      axios(axiosConfig)
+        .then(e => console.log(e.data))
+        .catch(e => console.log(e))
+    },
+    setLoginAction ({ commit, state }, object) {
+      const axiosConfig = {
+        method: 'post',
+        baseURL: 'http://10.177.68.110:808/',
+        url: '/login',
+        data: {
+          username: object.username,
+          password: object.password
+        }
+      }
+      axios(axiosConfig)
+        .then((e) => {
+          console.log(e.data)
+          localStorage.setItem('sessionId', e.data.Authorization)
+          router.push('/')
+        })
         .catch(e => console.log(e))
     }
   }
