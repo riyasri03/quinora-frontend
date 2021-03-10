@@ -386,4 +386,11 @@ width:  150px;
   margin-bottom:30px;
   margin-left: 60px;
 }
+button {
+  margin: 5px;
+  border-radius: 100px;
+}
+button:hover {
+  color:gray
+}
 </style>
