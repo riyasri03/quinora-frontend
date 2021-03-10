@@ -3,33 +3,42 @@
     <i class="fa fa-thumbs-up upvote-placement" @click="upvotes++"><span class="remove-pointer"> {{ upvotes }}</span></i>
     <i class="fa fa-thumbs-down downvote-placement" @click="downvotes++"><span class="remove-pointer"> {{ downvotes }} </span></i>
     <span class="remove-pointer comments-placement"> {{ comments }} </span><button class="fa fa-comments comments-placement" @click="toggleComments" :value="cid"></button>
-    <commentsInputWidget :id="cid" class="show-comments" />
+    <div v-show="listCommentsShow">
+      <commentsInputWidget :id="cid" class="show-comments" :answerId="answerId" />
+      <commentComponentHome :commentsData="commentsData" />
+    </div>
   </div>
 </template>
 
 <script>
 import commentsInputWidget from './commentsInputWidget.vue'
+import commentComponentHome from '../components/commentComponentHome.vue'
 export default {
   name: 'footComponentQAHome',
   components: {
-    commentsInputWidget: commentsInputWidget
+    commentsInputWidget: commentsInputWidget,
+    commentComponentHome: commentComponentHome
+  },
+  data () {
+    return {
+      listCommentsShow: false
+    }
   },
   props: {
     upvotes: Number,
     downvotes: Number,
     comments: Number,
-    cid: String
+    cid: String,
+    answerId: Number,
+    commentsData: Array
   },
   methods: {
     toggleComments (event) {
-      var visibility = document.getElementById(event.target.value).style.display
-      console.log(event.target.value)
-      if (visibility === 'block') {
-        document.getElementById(event.target.value).style.display = 'none'
+      if (this.listCommentsShow) {
+        this.listCommentsShow = false
       } else {
-        document.getElementById(event.target.value).style.display = 'block'
+        this.listCommentsShow = true
       }
-      console.log(document.getElementById(event.target.value).innerText)
     }
   }
 }
@@ -69,7 +78,6 @@ export default {
         cursor: auto;
     }
     .show-comments{
-      display: none;
       margin-top: 10px;
       margin-left: -10px;
       margin-right: -10px;

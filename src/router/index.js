@@ -4,6 +4,7 @@ import home from '../views/Home.vue'
 import login from '@/views/login.vue'
 import categories from '@/views/categories.vue'
 import questions from '@/views/questions.vue'
+import questionAnswer from '@/views/questionAnswer.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/questions',
     name: 'questions',
     component: questions
+  },
+  {
+    path: '/questionAnswer',
+    name: 'questionAnswer',
+    component: questionAnswer
   }
 ]
 

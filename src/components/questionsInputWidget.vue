@@ -68,6 +68,13 @@ export default {
       console.log(this.questionText)
       console.log(this.questionTitle)
       console.log(this.category)
+
+      this.$store.dispatch('setQuestionRequestAction', {
+        imageData: this.imageData,
+        questionText: this.questionText,
+        questionTitle: this.questionTitle,
+        category: this.category
+      })
     }
   }
 }
@@ -97,6 +104,7 @@ export default {
       margin-left: 10px;
       margin-right: 10px;
       margin-bottom: 10px;
+      margin-top: -6px;
     }
     .q-div-post-top{
       border: 1px solid lightgray;

@@ -16,7 +16,7 @@
               <headComponentQAHome :username="item.username" />
               <questionComponentHome :question="item.question" :src="item.src"/>
               <answerComponentHome :answer="item.answer" :src="item.asrc" />
-              <footComponentQAHome :comments="item.comments" :upvotes="item.upvotes" :downvotes="item.downvotes" :cid="item.qid+''+item.aid" />
+              <footComponentQAHome :comments="item.comments" :upvotes="item.upvotes" :downvotes="item.downvotes" :cid="item.qid+''+item.aid" :commentsData="commentsData" />
             </div>
           </div>
           <center class="pagination-placement">
@@ -65,6 +65,23 @@ export default {
       count: localStorage.getItem('count'),
       customStyles,
       customLabels,
+      commentsData: [
+        {
+          commentId: '1',
+          username: 'Preetham',
+          commentText: 'Hey, nice comment man'
+        },
+        {
+          commentId: '2',
+          username: 'Akshay',
+          commentText: 'Hey, nice comment man'
+        },
+        {
+          commentId: '3',
+          username: 'Aman Dhaka',
+          commentText: 'Hey, nice comment man'
+        }
+      ],
       questionShow: false,
       response: [
         {

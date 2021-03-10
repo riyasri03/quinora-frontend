@@ -43,6 +43,10 @@ export default {
     onSubmit () {
       console.log(this.imageData)
       console.log(this.answerText)
+      this.$store.dispatch('setAnswerRequestAction', {
+        imageData: this.imageData,
+        answerText: this.answerText
+      })
     }
   }
 }
@@ -65,6 +69,7 @@ export default {
       margin-left: 10px;
       margin-right: 10px;
       margin-bottom: 10px;
+      margin-top: -6px;
     }
     .i-div-post-top{
       border: 1px solid lightgray;

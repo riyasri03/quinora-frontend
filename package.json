@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@ocrv/vue-tailwind-pagination": "^0.0.4",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "jw-vue-pagination": "^1.0.3",
     "vue": "^2.6.11",

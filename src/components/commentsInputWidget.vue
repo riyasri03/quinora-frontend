@@ -17,6 +17,9 @@ export default {
       commentText: ''
     }
   },
+  props: {
+    answerId: Number
+  },
   methods: {
     previewImage (event) {
       var input = event.target
@@ -30,6 +33,14 @@ export default {
     },
     onSubmit () {
       console.log(this.commentText)
+      this.$store.dispatch('setAnswerCommentAction', {
+        answerId: this.answerId,
+        text: this.commentText
+      })
+      setTimeout(() => {
+        this.$store.dispatch('setQuestionAnswerRequestDataAction')
+      }, 1000)
+      this.commentText = ''
     }
   }
 }
@@ -53,6 +64,7 @@ export default {
     .c-div-post{
       border: 1px solid lightgray;
       border-top: 0px;
+      margin-top: -6px;
       margin-left: 10px;
       margin-right: -10px;
       margin-bottom: 10px;
