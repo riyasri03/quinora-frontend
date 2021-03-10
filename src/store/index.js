@@ -108,7 +108,10 @@ export default new Vuex.Store({
         }
       }
       axios(axiosConfig)
-        .then(e => console.log(e.data))
+        .then((e) => {
+          console.log(e.data)
+          router.push('/categories')
+        })
         .catch(e => console.log(e))
     },
     setLoginAction ({ commit, state }, object) {
