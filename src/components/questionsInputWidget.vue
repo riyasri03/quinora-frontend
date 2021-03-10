@@ -10,6 +10,28 @@
         <img :src="imageData" class="q-div-preview-img">
       </div>
       <div class="q-div-parent">
+        <input type="text" v-model="questionTitle" class="q-div-input-field" placeholder="Title">
+        <select type="text" v-model="category" class="q-div-input-field" placeholder="Category">
+            <option value="" selected>Select Category</option>
+            <option value="Technology">Technology</option>
+            <option value="Food"> Food</option>
+            <option value="Space">Space</option>
+            <option value="Science"> Science</option>
+            <option value="Music"> Music</option>
+            <option value="Movies"> Movies</option>
+            <option value="Anime"> Anime</option>
+            <option value="Politics"> Politics</option>
+            <option value="Horror"> Horror</option>
+            <option value="Travel"> Travel</option>
+            <option value="Disaster"> Disaster</option>
+            <option value="Health"> Health</option>
+            <option value="Fitness"> Fitness</option>
+            <option value="Games"> Games</option>
+            <option value="Education"> Education</option>
+            <option value="Sports"> Sports</option>
+            <option value="Car">Car</option>
+            <option value="History">History</option>
+        </select>
         <textarea class="q-div-input" v-model="questionText" placeholder="Ask your question here.">
         </textarea>
       </div>
@@ -25,7 +47,9 @@ export default {
   data () {
     return {
       imageData: '',
-      questionText: ''
+      questionText: '',
+      questionTitle: '',
+      category: ''
     }
   },
   methods: {
@@ -42,6 +66,8 @@ export default {
     onSubmit () {
       console.log(this.imageData)
       console.log(this.questionText)
+      console.log(this.questionTitle)
+      console.log(this.category)
     }
   }
 }
@@ -113,5 +139,15 @@ export default {
       appearance: none;
       margin: 5px;
       cursor: pointer;
+    }
+    .q-div-input-field{
+        width: calc(100% - 20px);
+        display: block;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-left: 10px;
+        margin-right: 10px;
+        border: 1px solid lightgray;
+        padding: 10px;
     }
 </style>

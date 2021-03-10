@@ -38,7 +38,7 @@ import footComponentQAHome from '../components/footComponentQAHome.vue'
 import headComponentQAHome from '../components/headComponentQAHome.vue'
 import askQuestionHome from '../components/askQuestionHome.vue'
 import navbar from '../components/navbar.vue'
-import QuestionsInputWidget from '../components/questionsInputWidget.vue'
+import questionsInputWidget from '../components/questionsInputWidget.vue'
 const customStyles = {
   ul: {
 
@@ -164,7 +164,7 @@ export default {
     headComponentQAHome: headComponentQAHome,
     askQuestionHome: askQuestionHome,
     navbar: navbar,
-    QuestionsInputWidget
+    questionsInputWidget: questionsInputWidget
   }
 }
 </script>
