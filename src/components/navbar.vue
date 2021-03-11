@@ -6,25 +6,40 @@
           <li><img src="../assets/newspaper.png"/></li>
           <li><img src="../assets/browser.png"/></li>
           <li><img src="../assets/users.png"/></li>
-          <li><img src="../assets/alarm.png"/></li>
+          <li><router-link to="/notification"><img src="../assets/alarm.png"/></router-link></li>
       </ul>
-      <select name="filter" id="filter">
-          <option value="">Filter 1</option>
-          <option value="">Filter 2</option>
-          <option value="">Filter 3</option>
-          <option value="">Filter 4</option>
+      <select name="filter" id="filter" v-model="filterType">
+          <option value="question">Question</option>
+          <option value="answer">Answer</option>
+          <option value="user">User</option>
       </select>
-      <input type="text" :name="searchTerm" placeholder="Search...">
+      <input type="text" :name="searchTerm" v-model="searchTerm" placeholder="Search...">
       <button type="submit" @click="onSearch" id="searchButton">Search</button>
       <img src="../assets/user.png" id="profile">
-      <img src="../assets/more.png" id="more" @click="onClickMenu()" alt="asda">
+      <img src="../assets/more.png" id="more" @click="onClickMenu()" alt="">
   </div>
 </template>
 <script>
 export default {
+  name: 'navbar',
+  data () {
+    return {
+      searchTerm: '',
+      filterType: 'question'
+    }
+  },
   methods: {
     onClickMenu () {
       alert('sad')
+    },
+    onSearch () {
+      if (this.filterType === 'question') {
+        this.$store.dispatch('searchByQuestionAction', this.searchTerm)
+      } else if (this.filterType === 'answer') {
+        this.$store.dispatch('searchByAnswerAction', this.searchTerm)
+      } else if (this.filterType === 'user') {
+        this.$store.dispatch('searchByUserAction', this.searchTerm)
+      }
     }
   }
 }
@@ -57,8 +72,9 @@ export default {
     #filter {
         position: absolute;
         left:33%;
-        margin-top:12px;
+        margin-top:15px;
         margin-bottom:5px;
+        margin-left: -20px;
         padding: 4px 10px;
         border:1px solid #F1F2F2;
         border-radius: 20px;

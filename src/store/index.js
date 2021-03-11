@@ -267,6 +267,42 @@ export default new Vuex.Store({
           commit('setAllQuestions', e.data)
         })
         .catch(e => console.log(e))
+    },
+    searchByQuestionAction ({ commit, state }, object) {
+      const axiosConfig = {
+        method: 'get',
+        baseURL: 'http://10.177.68.116:8082/',
+        url: `/search/question/${object}`
+      }
+      axios(axiosConfig)
+        .then((e) => {
+          console.log(e.data)
+        })
+        .catch(e => console.log(e))
+    },
+    searchByAnswerAction ({ commit, state }, object) {
+      const axiosConfig = {
+        method: 'get',
+        baseURL: 'http://10.177.68.116:8082/',
+        url: `/search/answer/${object}`
+      }
+      axios(axiosConfig)
+        .then((e) => {
+          console.log(e.data)
+        })
+        .catch(e => console.log(e))
+    },
+    searchByUserAction ({ commit, state }, object) {
+      const axiosConfig = {
+        method: 'get',
+        baseURL: 'http://10.177.68.116:8082/',
+        url: `/search/name/${object}`
+      }
+      axios(axiosConfig)
+        .then((e) => {
+          console.log(e.data)
+        })
+        .catch(e => console.log(e))
     }
   }
 })
