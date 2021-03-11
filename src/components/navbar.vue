@@ -2,11 +2,11 @@
   <div class = "nav">
       <ul>
           <img style="margin-right:20px;" id = "logo" src="../assets/image.jpg"/>
-          <li><img src="../assets/house.png"/></li>
-          <li><img src="../assets/news.png"/></li>
-          <li><img src="../assets/notes.png"/></li>
-          <li><img src="../assets/team.png"/></li>
-          <li><img src="../assets/notification.png"/></li>
+          <li><img src="../assets/home (1).png"/></li>
+          <li><img src="../assets/newspaper.png"/></li>
+          <li><img src="../assets/browser.png"/></li>
+          <li><img src="../assets/users.png"/></li>
+          <li><img src="../assets/alarm.png"/></li>
       </ul>
       <select name="filter" id="filter">
           <option value="">Filter 1</option>
@@ -16,7 +16,7 @@
       </select>
       <input type="text" :name="searchTerm" placeholder="Search...">
       <button type="submit" @click="onSearch" id="searchButton">Search</button>
-      <img src="../assets/profile.png" id="profile">
+      <img src="../assets/user.png" id="profile">
       <img src="../assets/more.png" id="more" @click="onClickMenu()" alt="asda">
   </div>
 </template>
@@ -43,10 +43,10 @@ export default {
     }
     #searchButton {
         position: absolute;
-        left: 67%;
+        left: 65%;
         margin-top:12px;
         margin-bottom:5px;
-        padding: 6px;
+        padding: 5px;
         border:none;
         background-color:#ce4745;
         width: 70px;
@@ -59,9 +59,9 @@ export default {
         left:33%;
         margin-top:12px;
         margin-bottom:5px;
-        padding: 6px 9px;
-        border:2px solid #F1F2F2;
-        border-radius: 30px;
+        padding: 4px 10px;
+        border:1px solid #F1F2F2;
+        border-radius: 20px;
         cursor: pointer;
     }
     .nav {
@@ -83,17 +83,17 @@ export default {
     #profile {
         width:30px;
         height:25px;
-        padding:10px 17px;
         position: absolute;
         right:10%;
+        margin-top:14px;
     }
     #more {
         width:30px;
         height:25px;
-        padding:10px 17px;
         position: absolute;
         right:7%;
         cursor: pointer;
+        margin-top:14px;
     }
     ul {
         width: 400px;
