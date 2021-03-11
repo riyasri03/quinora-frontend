@@ -148,58 +148,58 @@ export default {
       }
     },
     toLogin () {
-      if (document.getElementById('technology').value !== '') {
+      if (document.getElementById('technology').checked) {
         this.categoryList.push(document.getElementById('technology').value)
       }
-      if (document.getElementById('food').value !== '') {
+      if (document.getElementById('food').checked) {
         this.categoryList.push(document.getElementById('food').value)
       }
-      if (document.getElementById('space').value !== '') {
+      if (document.getElementById('space').checked) {
         this.categoryList.push(document.getElementById('space').value)
       }
-      if (document.getElementById('science').value !== '') {
+      if (document.getElementById('science').checked) {
         this.categoryList.push(document.getElementById('science').value)
       }
-      if (document.getElementById('movies').value !== '') {
+      if (document.getElementById('movies').checked) {
         this.categoryList.push(document.getElementById('movies').value)
       }
-      if (document.getElementById('music').value !== '') {
+      if (document.getElementById('music').checked) {
         this.categoryList.push(document.getElementById('music').value)
       }
-      if (document.getElementById('anime').value !== '') {
+      if (document.getElementById('anime').checked) {
         this.categoryList.push(document.getElementById('anime').value)
       }
-      if (document.getElementById('politics').value !== '') {
+      if (document.getElementById('politics').checked) {
         this.categoryList.push(document.getElementById('politics').value)
       }
-      if (document.getElementById('horror').value !== '') {
+      if (document.getElementById('horror').checked) {
         this.categoryList.push(document.getElementById('horror').value)
       }
-      if (document.getElementById('travel').value !== '') {
+      if (document.getElementById('travel').checked) {
         this.categoryList.push(document.getElementById('travel').value)
       }
-      if (document.getElementById('fitness').value !== '') {
+      if (document.getElementById('fitness').checked) {
         this.categoryList.push(document.getElementById('fitness').value)
       }
-      if (document.getElementById('disaster').value !== '') {
+      if (document.getElementById('disaster').checked) {
         this.categoryList.push(document.getElementById('disaster').value)
       }
-      if (document.getElementById('health').value !== '') {
+      if (document.getElementById('health').checked) {
         this.categoryList.push(document.getElementById('health').value)
       }
-      if (document.getElementById('education').value !== '') {
+      if (document.getElementById('education').checked) {
         this.categoryList.push(document.getElementById('education').value)
       }
-      if (document.getElementById('sports').value !== '') {
+      if (document.getElementById('sports').checked) {
         this.categoryList.push(document.getElementById('sports').value)
       }
-      if (document.getElementById('games').value !== '') {
+      if (document.getElementById('games').checked) {
         this.categoryList.push(document.getElementById('games').value)
       }
-      if (document.getElementById('cars').value !== '') {
+      if (document.getElementById('cars').checked) {
         this.categoryList.push(document.getElementById('cars').value)
       }
-      if (document.getElementById('history').value !== '') {
+      if (document.getElementById('history').checked) {
         this.categoryList.push(document.getElementById('history').value)
       }
       this.$store.dispatch('setCategoriesAction', this.categoryList)

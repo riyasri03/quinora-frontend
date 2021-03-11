@@ -10,7 +10,8 @@ export default new Vuex.Store({
     username: '',
     questionAnswerData: [],
     allQuestions: [],
-    particularQuestion: {}
+    particularQuestion: {},
+    categoryList: []
   },
   getters: {
     getQuestionAnswerData (state) {
@@ -21,6 +22,9 @@ export default new Vuex.Store({
     },
     getParticularQuestion (state) {
       return state.particularQuestion
+    },
+    getCategoryList (state) {
+      return state.categoryList
     }
   },
   mutations: {
@@ -32,6 +36,9 @@ export default new Vuex.Store({
     },
     setParticularQuestion (state, value) {
       state.particularQuestion = value
+    },
+    setCategoryList (state, value) {
+      state.categoryList = value
     }
   },
   actions: {
@@ -157,7 +164,8 @@ export default new Vuex.Store({
         url: '/user/save',
         data: {
           username: localStorage.getItem('username'),
-          category: object
+          category: object,
+          email: localStorage.getItem('email')
         }
       }
       axios(axiosConfig)
@@ -223,6 +231,20 @@ export default new Vuex.Store({
         .then((e) => {
           console.log(e.data)
           commit('setParticularQuestion', e.data)
+        })
+        .catch(e => console.log(e))
+    },
+    getUserCategoriesAction ({ commit, state }, object) {
+      const axiosConfig = {
+        method: 'get',
+        baseURL: 'http://10.177.68.116:8081/',
+        url: `/user/findByUserName/${localStorage.getItem('username')}`
+      }
+      axios(axiosConfig)
+        .then((e) => {
+          localStorage.setItem('categoryList', e.data.category)
+          console.log(e.data.category)
+          commit('setCategoryList', e.data.category)
         })
         .catch(e => console.log(e))
     }

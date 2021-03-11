@@ -1,9 +1,9 @@
 <template>
   <div>
     <navbar />
-    <table id="table" cellspacing="20px">
+    <table id="table" cellpadding="50px">
         <tr>
-        <td class="left"><sidebar /></td>
+        <td class="left-sidebar"><sidebar /></td>
         <td class="middle">
           <div id="pagination-content">
             <div @click="toggleQuestion">
@@ -96,6 +96,7 @@ export default {
   },
   created () {
     this.$store.dispatch('setGetAllQuestionsAction')
+    this.$store.dispatch('getUserCategoriesAction', localStorage.getItem('username'))
   }
 }
 </script>
@@ -105,11 +106,11 @@ export default {
       width: 100%;
       margin-top: 100px;
     }
-    .left{
+    .left-sidebar{
       width: 25%;
       top: 100px;
-      margin-left: -80px;
-      position: fixed;
+      height: 200px;
+      overflow: scroll;
     }
     .middle{
       width: 50%;

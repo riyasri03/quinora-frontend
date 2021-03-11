@@ -83,7 +83,7 @@ hr{
 
 #back-container{
   width: 100%;
-  background-color: skyblue !important;
+  background: url('../assets/MicrosoftTeams-image.png') !important;
   height: 100vh;
   padding-top: 10px;
 }

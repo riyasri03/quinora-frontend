@@ -1,7 +1,7 @@
 <template>
   <div class = "nav">
       <ul>
-          <img style="margin-right:20px;" id = "logo" src="../assets/image.jpg"/>
+          <img style="margin-right:20px;" id="logo" src="../assets/Quinora.png" />
           <li><router-link to="/"><img src="../assets/home (1).png"/></router-link></li>
           <li><img src="../assets/newspaper.png"/></li>
           <li><img src="../assets/browser.png"/></li>
@@ -76,9 +76,7 @@ export default {
     }
     #logo {
         width: 100px;
-        height: 50px;
-        padding:12px;
-        margin-top: 5px;
+        height: 60px;
     }
     #profile {
         width:30px;
