@@ -75,6 +75,12 @@ export default {
         questionTitle: this.questionTitle,
         category: this.category
       })
+      setTimeout(() => {
+        this.$store.dispatch('setGetAllQuestionsAction')
+      }, 1000)
+      this.questionText = ''
+      this.questionTitle = ''
+      this.category = ''
     }
   }
 }

@@ -8,16 +8,23 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     username: '',
-    questionAnswerData: []
+    questionAnswerData: [],
+    allQuestions: []
   },
   getters: {
     getQuestionAnswerData (state) {
       return state.questionAnswerData
+    },
+    getAllQuestions (state) {
+      return state.allQuestions
     }
   },
   mutations: {
     setQuestionAnswerData (state, value) {
       state.questionAnswerData = value
+    },
+    setAllQuestions (state, value) {
+      state.allQuestions = value
     }
   },
   actions: {
@@ -25,7 +32,7 @@ export default new Vuex.Store({
       const axiosConfig = {
         method: 'post',
         baseURL: 'http://10.177.68.81:8080/',
-        url: 'question/amandhaka/add',
+        url: `question/${localStorage.getItem('username')}/add`,
         data: {
           category: object.category,
           questionTitle: object.questionTitle,
@@ -48,6 +55,7 @@ export default new Vuex.Store({
           axios(axiosConfigRe)
             .then((e) => {
               console.log(e.data)
+              alert('Question Posted')
             })
         })
         .catch(e => alert('Not Added'))
@@ -191,6 +199,7 @@ export default new Vuex.Store({
       axios(axiosConfig)
         .then((e) => {
           console.log(e.data)
+          commit('setAllQuestions', e.data)
         })
         .catch(e => console.log(e))
     }

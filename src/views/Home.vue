@@ -14,13 +14,13 @@
             </div>
             <div v-for="item in pageOfItems" :key="item.id" class="question-answer-card">
               <headComponentQAHome :username="item.username" />
-              <questionComponentHome :question="item.question" :src="item.src"/>
-              <answerComponentHome :answer="item.answer" :src="item.asrc" />
-              <footComponentQAHome :comments="item.comments" :upvotes="item.upvotes" :downvotes="item.downvotes" :cid="item.qid+''+item.aid" :commentsData="commentsData" />
+              <questionComponentHome :question="item.questionText" :category="item.category" :src="item.src" :id="item.questionId" :createdAt="item.createdAt" />
+              <!--<answerComponentHome :answer="item.answer" :src="item.asrc" />
+              <footComponentQAHome :comments="item.comments" :upvotes="item.upvotes" :downvotes="item.downvotes" :cid="item.qid+''+item.aid" :commentsData="commentsData" />-->
             </div>
           </div>
           <center class="pagination-placement">
-            <jw-pagination :pageSize=5 :initialPage=count :items="response" @changePage="onChangePage" :styles="customStyles" :labels="customLabels"></jw-pagination>
+            <jw-pagination :pageSize=5 :items="getAllQuestions" @changePage="onChangePage" :styles="customStyles" :labels="customLabels"></jw-pagination>
           </center>
         </td>
         <td class="right"></td>
@@ -31,6 +31,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+import { mapGetters } from 'vuex'
 import sidebar from '@/components/sidebar.vue'
 import questionComponentHomeVue from '../components/questionComponentHome.vue'
 import answerComponentHome from '../components/answerComponentHome.vue'
@@ -60,102 +61,10 @@ export default {
   name: 'home',
   data () {
     return {
-      currentUser: 'Siddhant',
-      i: 1,
-      count: localStorage.getItem('count'),
+      currentUser: localStorage.getItem('username'),
       customStyles,
       customLabels,
-      commentsData: [
-        {
-          commentId: '1',
-          username: 'Preetham',
-          commentText: 'Hey, nice comment man'
-        },
-        {
-          commentId: '2',
-          username: 'Akshay',
-          commentText: 'Hey, nice comment man'
-        },
-        {
-          commentId: '3',
-          username: 'Aman Dhaka',
-          commentText: 'Hey, nice comment man'
-        }
-      ],
       questionShow: false,
-      response: [
-        {
-          qid: 1,
-          aid: 1,
-          question: 'What are we doing here?',
-          src: require('../assets/space.jpg'),
-          answer: 'We are making a Quora clone.',
-          asrc: require('../assets/space.jpg'),
-          comments: 10,
-          upvotes: 200,
-          downvotes: 1,
-          username: 'Riya'
-        },
-        {
-          qid: 2,
-          aid: 2,
-          question: 'What are we doing here?',
-          src: require('../assets/space.jpg'),
-          answer: 'We are making a Quora clone.',
-          asrc: '',
-          comments: 10,
-          upvotes: 200,
-          downvotes: 1,
-          username: 'Riya'
-        },
-        {
-          qid: 3,
-          aid: 3,
-          question: 'What are we doing here?',
-          src: '',
-          answer: 'We are making a Quora clone.',
-          asrc: '',
-          comments: 10,
-          upvotes: 200,
-          downvotes: 1,
-          username: 'Riya'
-        },
-        {
-          qid: 4,
-          aid: 4,
-          question: 'What are we doing here?',
-          src: require('../assets/space.jpg'),
-          answer: 'We are making a Quora clone.',
-          asrc: require('../assets/space.jpg'),
-          comments: 10,
-          upvotes: 200,
-          downvotes: 1,
-          username: 'Riya'
-        },
-        {
-          qid: 5,
-          aid: 5,
-          question: 'What are we doing here?',
-          src: require('../assets/space.jpg'),
-          answer: 'We are making a Quora clone.',
-          asrc: require('../assets/space.jpg'),
-          comments: 10,
-          upvotes: 200,
-          downvotes: 1,
-          username: 'Riya'
-        },
-        {
-          qid: 6,
-          question: 'What are we doing here?',
-          src: require('../assets/space.jpg'),
-          answer: 'We are making a Quora clone.',
-          asrc: require('../assets/space.jpg'),
-          comments: 10,
-          upvotes: 200,
-          downvotes: 1,
-          username: 'Riya'
-        }
-      ],
       pageOfItems: []
     }
   },
@@ -165,7 +74,6 @@ export default {
       this.pageOfItems = pageOfItems
     },
     toggleQuestion () {
-      console.log('sdfsdfa')
       if (this.questionShow) {
         this.questionShow = false
       } else {
@@ -182,6 +90,9 @@ export default {
     askQuestionHome: askQuestionHome,
     navbar: navbar,
     questionsInputWidget: questionsInputWidget
+  },
+  computed: {
+    ...mapGetters(['getAllQuestions'])
   },
   created () {
     this.$store.dispatch('setGetAllQuestionsAction')

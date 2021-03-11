@@ -1,7 +1,15 @@
 <template>
   <div class="ques-conatiner">
+      <div class="ques-category">
+        <table>
+          <tr>
+            <td class="ques-left">Category: <b>{{ category }}</b></td>
+            <td class="ques-right">Posted on: <b>{{ createdAt.substring(8, 10) + '-' + createdAt.substring(5, 7) + '-' + createdAt.substring(0, 4)}}</b></td>
+          </tr>
+        </table>
+      </div>
       <div class="question">
-          Question: {{ question }}
+        <a class='remove-default-css-a'><p :id="id">Question: {{ question }}</p></a>
       </div>
       <div class="question-image">
         <img :src="src" width="300px" class="image-css" />
@@ -14,31 +22,51 @@ export default {
   name: 'questionComponentHome',
   props: {
     question: String,
-    src: String
+    category: String,
+    src: String,
+    id: Number,
+    createdAt: String
   }
 }
 </script>
 
 <style scoped>
     .question{
-        display: block;
-        padding: 10px;
-        width: 100%;
-        font-weight: bold;
+      display: block;
+      padding: 10px;
+      width: 100%;
+      font-weight: bold;
     }
     .question-image{
-        text-align: center;
-        margin-left: 10px;
-        margin-right: 10px;
-        background: whitesmoke;
-        border-radius: 10px;
+      text-align: center;
+      margin-left: 10px;
+      margin-right: 10px;
+      background: whitesmoke;
+      border-radius: 10px;
+    }
+    .ques-category{
+      margin: 10px;
+      border: 1px solid whitesmoke;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 10px;
     }
     .ques-container{
-        margin: 10px;
-        border: 1px solid whitesmoke;
-        border-radius: 10px;
+      margin: 10px;
+      border: 1px solid whitesmoke;
+      border-radius: 10px;
     }
     .image-css{
         border-radius: 10px;
+    }
+    .remove-default-css-a{
+      text-decoration: none;
+      color: black;
+    }
+    .ques-left{
+      float: left;
+    }
+    .ques-right{
+      float: right
     }
 </style>
