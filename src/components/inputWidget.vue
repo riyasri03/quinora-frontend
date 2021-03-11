@@ -9,7 +9,7 @@
       <div class="i-div-image-preview" v-if="imageData.length > 0">
         <img :src="imageData" class="i-div-preview-img">
       </div>
-      <textarea class="i-div-input" placeholder="Add Content." cols="70" v-model="answerText">
+      <textarea class="i-div-input" placeholder="Add Content." cols="72" v-model="answerText">
       </textarea>
       <div class="i-div-post">
           <button class="i-div-post-btn" @click="onSubmit">Post</button>
@@ -45,8 +45,14 @@ export default {
       console.log(this.answerText)
       this.$store.dispatch('setAnswerRequestAction', {
         imageData: this.imageData,
-        answerText: this.answerText
+        answerText: this.answerText,
+        questionId: this.cid
       })
+      this.answerText = ''
+      setTimeout(() => {
+        this.$store.dispatch('setQuestionAnswerRequestDataAction', this.cid)
+        this.$store.dispatch('setGetParticularQuestionAction', this.cid)
+      }, 100)
     }
   }
 }

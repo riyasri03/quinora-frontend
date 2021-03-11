@@ -1,7 +1,7 @@
 <template>
   <div class="container">
       <div class="inner-container-ask-question">
-        <b>{{ username }}</b>
+        <b>{{ username.substring(0,1).toUpperCase() + '' + username.substring(1,username.length) }}</b>
         <div class="inner-container-text">
             Ask your question here.
         </div>

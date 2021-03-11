@@ -2,7 +2,7 @@
   <div class = "nav">
       <ul>
           <img style="margin-right:20px;" id = "logo" src="../assets/image.jpg"/>
-          <li><img src="../assets/home (1).png"/></li>
+          <li><router-link to="/"><img src="../assets/home (1).png"/></router-link></li>
           <li><img src="../assets/newspaper.png"/></li>
           <li><img src="../assets/browser.png"/></li>
           <li><img src="../assets/users.png"/></li>

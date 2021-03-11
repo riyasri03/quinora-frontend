@@ -7,8 +7,11 @@
                 <td class='left'>
                 </td>
                 <td class='middle'>
-                    <div class='q-a-head'>Question Title{{ qTitle }} </div>
-                    <div class='q-a-head'>Question: <b>{{ qText }}</b></div>
+                  <div class="inside-middle">
+                    <questionComponentHome :question="getParticularQuestion.questionText" :category="getParticularQuestion.category" :src="getParticularQuestion.src" :id="getParticularQuestion.q" :createdAt="getParticularQuestion.createdAt" />
+                    <button class="a-btn" @click="toggleInput" :value="getParticularQuestion.questionId">Answer</button>
+                    <inputWidget :id="getParticularQuestion.questionId" :cid="getParticularQuestion.questionId" class="q-initial-style"/>
+                  </div>
                 </td>
                 <td class='right'>
                 </td>
@@ -17,12 +20,17 @@
                 <td class='left'>
                 </td>
                 <td class='middle'>
-                    <div v-for="item in getQuestionAnswerData" :key="item.id">
-                        <div class="q-a-parent">
-                            <headComponentQAHome :username="item.userName.substring(0,1).toUpperCase() + '' + item.userName.substring(1,item.userName.length)" />
-                            <answerComponentHome :answer="item.answerText.substring(0,1).toUpperCase() + '' + item.answerText.substring(1,item.answerText.length)" :src="item.imgsrc" />
-                            <footComponentQAHome :comments="item.commentList.length" :upvotes="item.likes" :downvotes="item.dislikes" :cid="item.qusetionID+''+item.id" :commentsData="item.commentList" :answerId="item.id" />
-                        </div>
+                    <div v-if="getQuestionAnswerData.length > 0">
+                      <div v-for="item in getQuestionAnswerData" :key="item.id">
+                          <div class="q-a-parent">
+                              <headComponentAnswer :username="item.userName.substring(0,1).toUpperCase() + '' + item.userName.substring(1,item.userName.length)" />
+                              <answerComponentHome :answer="item.answerText.substring(0,1).toUpperCase() + '' + item.answerText.substring(1,item.answerText.length)" :src="item.src" />
+                              <footComponentQAHome :comments="item.commentList.length" :upvotes="item.likes" :downvotes="item.dislikes" :cid="item.qusetionID+''+item.id" :commentsData="item.commentList" :answerId="item.id" />
+                          </div>
+                      </div>
+                    </div>
+                    <div v-else class="q-a-parent-height">
+                      No Answers Yet.
                     </div>
                 </td>
                 <td class="right">
@@ -34,59 +42,115 @@
 </template>
 
 <script>
+import inputWidget from '../components/inputWidget.vue'
 import { mapGetters } from 'vuex'
 import navbar from '../components/navbar.vue'
-import headComponentQAHome from '../components/headComponentQAHome.vue'
+import headComponentAnswer from '../components/headComponentAnswer.vue'
 import answerComponentHome from '../components/answerComponentHome.vue'
 import footComponentQAHome from '../components/footComponentQAHome.vue'
+import questionComponentHome from '../components/questionComponentHome.vue'
 export default {
   name: 'questionAnswer',
   data () {
     return {
-      qText: localStorage.getItem('questionText'),
-      qTitle: localStorage.getItem('questionTitle')
+      qText: '',
+      qTitle: ''
     }
   },
   computed: {
-    ...mapGetters(['getQuestionAnswerData'])
+    ...mapGetters(['getQuestionAnswerData', 'getParticularQuestion'])
+  },
+  methods: {
+    toggleInput (event) {
+      var visibility = document.getElementById(event.target.value).style.display
+      console.log(event.target.value)
+      if (visibility === 'block') {
+        document.getElementById(event.target.value).style.display = 'none'
+      } else {
+        document.getElementById(event.target.value).style.display = 'block'
+      }
+      console.log(document.getElementById(event.target.value).innerText)
+    }
   },
   created () {
     this.$store.dispatch('setQuestionAnswerRequestDataAction', localStorage.getItem('questionId'))
+    this.$store.dispatch('setGetParticularQuestionAction', localStorage.getItem('questionId'))
   },
   components: {
-    headComponentQAHome: headComponentQAHome,
+    headComponentAnswer: headComponentAnswer,
     answerComponentHome: answerComponentHome,
     footComponentQAHome: footComponentQAHome,
-    navbar: navbar
+    questionComponentHome: questionComponentHome,
+    navbar: navbar,
+    inputWidget: inputWidget
   }
 }
 </script>
 
 <style>
     .q-a-head{
-        margin-left: 10px;
+      margin-left: 10px;
     }
     .margin-top-parent{
-        margin-top: 100px;
+      margin-top: 100px;
     }
     .table-parent{
-        width: 100%;
+      width: 100%;
     }
     .q-a-parent{
-        width: 100%;
-        padding: 10px;
-        border: 1px solid lightgray;
-        border-radius: 10px;
-        margin: 10px;
-        margin-bottom: 20px;
+      width: 100%;
+      padding: 10px;
+      border: 1px solid lightgray;
+      border-radius: 10px;
+      margin: 10px;
+      margin-bottom: 20px;
+    }
+    .q-a-parent-height{
+      width: 100%;
+      padding: 20px;
+      border: 1px solid lightgray;
+      border-radius: 10px;
+      margin: 10px;
+      margin-bottom: 20px;
+      text-align: center;
     }
     .left{
-        width: 20%
+      width: 20%
+    }
+    .inside-middle{
+      border: 1px solid lightgray;
+      margin-left: 10px;
+      margin-right: -10px;
+      padding: 10px;
+      border-radius: 10px;
     }
     .middle{
-        width: 45%;
+      width: 490px;
     }
     .right{
-        width: 35%;
+      width: 35%;
+    }
+    .q-initial-style{
+      display: none;
+    }
+    .a-btn{
+      margin-top: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      appearance: none;
+      border: 1px solid #4ca7ff;
+      background: white;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      margin-left: 10px;
+      color: #4ca7ff;
+      cursor: pointer;
+    }
+    .a-btn:focus{
+      outline: none;
+    }
+    .a-btn:hover{
+      background-color: #4ca7ff;
+      color: white;
     }
 </style>

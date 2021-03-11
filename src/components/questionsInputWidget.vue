@@ -77,7 +77,7 @@ export default {
       })
       setTimeout(() => {
         this.$store.dispatch('setGetAllQuestionsAction')
-      }, 1000)
+      }, 100)
       this.questionText = ''
       this.questionTitle = ''
       this.category = ''

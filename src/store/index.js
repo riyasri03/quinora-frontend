@@ -9,7 +9,8 @@ export default new Vuex.Store({
   state: {
     username: '',
     questionAnswerData: [],
-    allQuestions: []
+    allQuestions: [],
+    particularQuestion: {}
   },
   getters: {
     getQuestionAnswerData (state) {
@@ -17,6 +18,9 @@ export default new Vuex.Store({
     },
     getAllQuestions (state) {
       return state.allQuestions
+    },
+    getParticularQuestion (state) {
+      return state.particularQuestion
     }
   },
   mutations: {
@@ -25,6 +29,9 @@ export default new Vuex.Store({
     },
     setAllQuestions (state, value) {
       state.allQuestions = value
+    },
+    setParticularQuestion (state, value) {
+      state.particularQuestion = value
     }
   },
   actions: {
@@ -64,7 +71,7 @@ export default new Vuex.Store({
       const axiosConfig = {
         method: 'post',
         baseURL: 'http://10.177.68.81:8080/',
-        url: 'amandhaka/6',
+        url: `${localStorage.getItem('username')}/${object.questionId}`,
         data: {
           answerText: object.answerText,
           imgsrc: object.imageData
@@ -89,8 +96,6 @@ export default new Vuex.Store({
           commit('setQuestionAnswerData', e.data)
           console.log(state.questionAnswerData)
           localStorage.setItem('questionId', object)
-          localStorage.setItem('questionText', e.data[0].qtext)
-          localStorage.setItem('questionTitle', e.data[0].qtitle)
           router.push('/questionAnswer')
         })
         .catch(e => console.log(e))
@@ -197,7 +202,7 @@ export default new Vuex.Store({
     },
     setGetAllQuestionsAction ({ commit, state }, object) {
       const axiosConfig = {
-        methos: 'get',
+        method: 'get',
         baseURL: 'http://10.177.68.81:8080/',
         url: '/question/all'
       }
@@ -205,6 +210,19 @@ export default new Vuex.Store({
         .then((e) => {
           console.log(e.data)
           commit('setAllQuestions', e.data)
+        })
+        .catch(e => console.log(e))
+    },
+    setGetParticularQuestionAction ({ commit, state }, object) {
+      const axiosConfig = {
+        method: 'get',
+        baseURL: 'http://10.177.68.81:8080/',
+        url: `/question/question-id/${object}`
+      }
+      axios(axiosConfig)
+        .then((e) => {
+          console.log(e.data)
+          commit('setParticularQuestion', e.data)
         })
         .catch(e => console.log(e))
     }
