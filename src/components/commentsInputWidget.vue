@@ -38,7 +38,7 @@ export default {
         text: this.commentText
       })
       setTimeout(() => {
-        this.$store.dispatch('setQuestionAnswerRequestDataAction')
+        this.$store.dispatch('setQuestionAnswerRequestDataAction', localStorage.getItem('questionId'))
       }, 100)
       this.commentText = ''
     }

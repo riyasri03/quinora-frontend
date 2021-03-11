@@ -80,13 +80,18 @@ export default new Vuex.Store({
       const axiosConfig = {
         method: 'get',
         baseURL: 'http://10.177.68.81:8080/',
-        url: 'chaitanya/7'
+        url: `${localStorage.getItem('username')}/${object}`
       }
+      console.log(object)
       axios(axiosConfig)
         .then((e) => {
           console.log(e.data)
           commit('setQuestionAnswerData', e.data)
           console.log(state.questionAnswerData)
+          localStorage.setItem('questionId', object)
+          localStorage.setItem('questionText', e.data[0].qtext)
+          localStorage.setItem('questionTitle', e.data[0].qtitle)
+          router.push('/questionAnswer')
         })
         .catch(e => console.log(e))
     },
@@ -94,7 +99,7 @@ export default new Vuex.Store({
       const axiosConfig = {
         method: 'post',
         baseURL: 'http://10.177.68.81:8080/',
-        url: 'postComment/chaitanya',
+        url: `postComment/${localStorage.getItem('username')}`,
         data: {
           answerId: object.answerId,
           text: object.text,
@@ -162,7 +167,7 @@ export default new Vuex.Store({
       const axiosConfig = {
         method: 'post',
         baseURL: 'http://10.177.68.81:8080/',
-        url: '/reaction/randomnoob2',
+        url: `/reaction/${localStorage.getItem('username')}`,
         data: {
           answerId: object.answerId,
           liked: object.isLiked
@@ -178,7 +183,7 @@ export default new Vuex.Store({
       const axiosConfig = {
         method: 'post',
         baseURL: 'http://10.177.68.81:8080/',
-        url: '/reaction/randomnoob2',
+        url: `/reaction/${localStorage.getItem('username')}`,
         data: {
           answerId: object.answerId,
           liked: object.isLiked

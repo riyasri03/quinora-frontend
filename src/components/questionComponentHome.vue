@@ -9,7 +9,7 @@
         </table>
       </div>
       <div class="question">
-        <a class='remove-default-css-a'><p :id="id">Question: {{ question }}</p></a>
+        <a class='remove-default-css-a'><p :id="id" @click="goToQuestions">Question: {{ question }}</p></a>
       </div>
       <div class="question-image">
         <img :src="src" width="300px" class="image-css" />
@@ -26,6 +26,11 @@ export default {
     src: String,
     id: Number,
     createdAt: String
+  },
+  methods: {
+    goToQuestions (event) {
+      this.$store.dispatch('setQuestionAnswerRequestDataAction', event.target.id)
+    }
   }
 }
 </script>
@@ -57,11 +62,15 @@ export default {
       border-radius: 10px;
     }
     .image-css{
-        border-radius: 10px;
+      border-radius: 10px;
     }
     .remove-default-css-a{
       text-decoration: none;
       color: black;
+      cursor: pointer;
+    }
+    .remove-default-css-a:hover{
+      box-shadow: 0 0 10px 1px gray;
     }
     .ques-left{
       float: left;

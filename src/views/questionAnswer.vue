@@ -7,7 +7,8 @@
                 <td class='left'>
                 </td>
                 <td class='middle'>
-                    <div class='q-a-head'>Question</div>
+                    <div class='q-a-head'>Question Title{{ qTitle }} </div>
+                    <div class='q-a-head'>Question: <b>{{ qText }}</b></div>
                 </td>
                 <td class='right'>
                 </td>
@@ -40,11 +41,17 @@ import answerComponentHome from '../components/answerComponentHome.vue'
 import footComponentQAHome from '../components/footComponentQAHome.vue'
 export default {
   name: 'questionAnswer',
+  data () {
+    return {
+      qText: localStorage.getItem('questionText'),
+      qTitle: localStorage.getItem('questionTitle')
+    }
+  },
   computed: {
     ...mapGetters(['getQuestionAnswerData'])
   },
   created () {
-    this.$store.dispatch('setQuestionAnswerRequestDataAction')
+    this.$store.dispatch('setQuestionAnswerRequestDataAction', localStorage.getItem('questionId'))
   },
   components: {
     headComponentQAHome: headComponentQAHome,
