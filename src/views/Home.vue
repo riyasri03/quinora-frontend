@@ -12,11 +12,16 @@
             <div v-show="questionShow" class="question-prompt-container">
               <questionsInputWidget class="question-prompt"/>
             </div>
-            <div v-for="item in pageOfItems" :key="item.id" class="question-answer-card">
-              <headComponentQAHome :username="item.username" />
-              <questionComponentHome :question="item.questionText" :category="item.category" :src="item.src" :id="item.questionId" :createdAt="item.createdAt" />
-              <!--<answerComponentHome :answer="item.answer" :src="item.asrc" />
-              <footComponentQAHome :comments="item.comments" :upvotes="item.upvotes" :downvotes="item.downvotes" :cid="item.qid+''+item.aid" :commentsData="commentsData" />-->
+            <div v-if="pageOfItems.length > 0">
+              <div v-for="item in pageOfItems" :key="item.id" class="question-answer-card">
+                <headComponentQAHome :username="item.username" />
+                <questionComponentHome :question="item.questionText" :category="item.category" :src="item.src" :id="item.questionId" :createdAt="item.createdAt" />
+                <!--<answerComponentHome :answer="item.answer" :src="item.asrc" />
+                <footComponentQAHome :comments="item.comments" :upvotes="item.upvotes" :downvotes="item.downvotes" :cid="item.qid+''+item.aid" :commentsData="commentsData" />-->
+              </div>
+            </div>
+            <div v-else class="q-a-parent-height-css">
+              No Questions Yet.
             </div>
           </div>
           <center class="pagination-placement">
@@ -96,7 +101,7 @@ export default {
   },
   created () {
     this.$store.dispatch('setGetAllQuestionsAction')
-    this.$store.dispatch('getUserCategoriesAction', localStorage.getItem('username'))
+    this.$store.dispatch('setGetUserCategoriesAction', localStorage.getItem('username'))
   }
 }
 </script>
@@ -136,5 +141,14 @@ export default {
       margin-bottom: 40px;
       margin-top: -15px;
       border-radius: 10px;
+    }
+    .q-a-parent-height-css{
+      width: 100%;
+      padding: 20px;
+      border: 1px solid lightgray;
+      border-radius: 10px;
+      margin: 10px;
+      margin-bottom: 20px;
+      text-align: center;
     }
 </style>

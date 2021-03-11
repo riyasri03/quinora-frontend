@@ -3,7 +3,7 @@
     <div class="hardcoded-text">
         Question . Recommended for you
     </div>
-    <span>Questioned by:<b> {{ username.substring(0,1).toUpperCase() + '' + username.substring(1,username.length) }}</b></span>
+    <span>Asked by:<b> {{ username.substring(0,1).toUpperCase() + '' + username.substring(1,username.length) }}</b></span>
   </div>
 </template>
 

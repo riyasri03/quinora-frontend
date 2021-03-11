@@ -2,8 +2,8 @@
   <div class="container">
       <div class="inner-container">
         <div v-for="category in getCategoryList" :key="category.id" class="parent">
-            <img :src="category.src" class="image-css">
-            <button class="btn" @click="categorySelect" :id="category" :value="category">{{ category.substring(0,1).toUpperCase() + '' + category.substring(1, category.length) }}</button>
+          <img :src="category.src" class="image-css">
+          <button class="btn" @click="categorySelect" :id="category.substring(0,1).toUpperCase() + '' + category.substring(1, category.length)" :value="category.substring(0,1).toUpperCase() + '' + category.substring(1, category.length)">{{ category.substring(0,1).toUpperCase() + '' + category.substring(1, category.length) }}</button>
         </div>
       </div>
   </div>
@@ -21,13 +21,17 @@ export default {
   methods: {
     categorySelect (event) {
       console.log(event.target.id)
+      const obj = {
+        category: event.target.id
+      }
+      this.$store.dispatch('setGetQuestionsByCategoryAction', obj)
     }
   },
   computed: {
     ...mapGetters(['getCategoryList'])
   },
   created () {
-    this.$store.dispatch('getUserCategoriesAction', localStorage.getItem('username'))
+    this.$store.dispatch('setGetUserCategoriesAction', localStorage.getItem('username'))
   }
 }
 </script>

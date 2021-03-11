@@ -77,10 +77,11 @@ export default {
       })
       setTimeout(() => {
         this.$store.dispatch('setGetAllQuestionsAction')
-      }, 100)
+      }, 500)
       this.questionText = ''
       this.questionTitle = ''
       this.category = ''
+      this.imageData = ''
     }
   }
 }

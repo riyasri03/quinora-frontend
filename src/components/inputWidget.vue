@@ -49,6 +49,7 @@ export default {
         questionId: this.cid
       })
       this.answerText = ''
+      this.imageData = ''
       setTimeout(() => {
         this.$store.dispatch('setQuestionAnswerRequestDataAction', this.cid)
         this.$store.dispatch('setGetParticularQuestionAction', this.cid)

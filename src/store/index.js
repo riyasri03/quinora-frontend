@@ -11,7 +11,8 @@ export default new Vuex.Store({
     questionAnswerData: [],
     allQuestions: [],
     particularQuestion: {},
-    categoryList: []
+    categoryList: [],
+    questionsByCategoryList: []
   },
   getters: {
     getQuestionAnswerData (state) {
@@ -25,6 +26,9 @@ export default new Vuex.Store({
     },
     getCategoryList (state) {
       return state.categoryList
+    },
+    getQuestionsByCategoryList (state) {
+      return state.questionsByCategoryList
     }
   },
   mutations: {
@@ -39,6 +43,9 @@ export default new Vuex.Store({
     },
     setCategoryList (state, value) {
       state.categoryList = value
+    },
+    setQuestionsByCategoryList (state, value) {
+      state.questionsByCategoryList = value
     }
   },
   actions: {
@@ -234,7 +241,7 @@ export default new Vuex.Store({
         })
         .catch(e => console.log(e))
     },
-    getUserCategoriesAction ({ commit, state }, object) {
+    setGetUserCategoriesAction ({ commit, state }, object) {
       const axiosConfig = {
         method: 'get',
         baseURL: 'http://10.177.68.116:8081/',
@@ -245,6 +252,19 @@ export default new Vuex.Store({
           localStorage.setItem('categoryList', e.data.category)
           console.log(e.data.category)
           commit('setCategoryList', e.data.category)
+        })
+        .catch(e => console.log(e))
+    },
+    setGetQuestionsByCategoryAction ({ commit, state }, object) {
+      const axiosConfig = {
+        method: 'get',
+        baseURL: 'http://10.177.68.81:8080/',
+        url: `/question/${object.category}`
+      }
+      axios(axiosConfig)
+        .then((e) => {
+          console.log(e.data)
+          commit('setAllQuestions', e.data)
         })
         .catch(e => console.log(e))
     }
