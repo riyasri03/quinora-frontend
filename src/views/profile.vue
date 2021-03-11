@@ -54,7 +54,7 @@
   </span>
 </div>
 <div class="column leftside ">
-    <h4>Credentials  and Highligths</h4>
+    <h4>Credentials  and Highlights</h4>
     <div class="highligtUnderline">
         <br>
         <br>
@@ -119,6 +119,8 @@
          <br>
          <label for="degree">Degree</label>
          <input v-model="degree" type="text" id="degree">
+         <br>
+         <br>
          </p>
          <button @click="saveEducation">Save Education</button>
          <button @click="AddEducation">Add</button>
@@ -163,8 +165,8 @@ export default {
       graduationYear: '',
       degree: '',
       obj: {},
-      obj2: [],
-      obj3: [],
+      employment: [],
+      education: [],
       obj4: {}
     }
   },
@@ -227,22 +229,22 @@ export default {
       console.log(this.profileImage)
     },
     saveEmployment () {
-      this.obj2.push({
+      this.employment.push({
         position: this.position,
         organization: this.organization,
         startYear: this.startYear,
         endYear: this.endYear
       })
-      console.log(this.obj2)
+      console.log(this.employment)
     },
     saveEducation () {
-      this.obj3.push({
+      this.education.push({
         school: this.school,
         primarydetail: this.primaryDetail,
         graduationYear: this.graduationYear,
         degree: this.degree
       })
-      console.log(this.obj3)
+      console.log(this.education)
     },
     profile () {
       this.profileShow = false
@@ -259,6 +261,7 @@ export default {
       inputElement.addEventListener('change', function () {
         var url = URL.createObjectURL(inputElement.files[0])
         imgElement.src = url
+        this.profileImage = imgElement.src
         console.log(imgElement.src)
       })
     },
@@ -293,8 +296,9 @@ export default {
         profileCredential: this.profileCredential,
         address: this.address,
         bio: this.bio,
-        obj2: this.obj2,
-        obj3: this.obj3
+        profileImage: this.profileImage,
+        employment: this.employment,
+        education: this.education
       }
       console.log(this.obj)
       axios.post('http://10.177.68.116:8081/user/save', this.obj).then((result) => {
