@@ -12,7 +12,7 @@ export default new Vuex.Store({
     allQuestions: [],
     particularQuestion: {},
     categoryList: [],
-    questionsByCategoryList: []
+    searchByQuestionList: []
   },
   getters: {
     getQuestionAnswerData (state) {
@@ -27,8 +27,8 @@ export default new Vuex.Store({
     getCategoryList (state) {
       return state.categoryList
     },
-    getQuestionsByCategoryList (state) {
-      return state.questionsByCategoryList
+    getSearchByQuestionList (state) {
+      return state.searchByQuestionList
     }
   },
   mutations: {
@@ -44,8 +44,8 @@ export default new Vuex.Store({
     setCategoryList (state, value) {
       state.categoryList = value
     },
-    setQuestionsByCategoryList (state, value) {
-      state.questionsByCategoryList = value
+    setSearchByQuestionList (state, value) {
+      state.searchByQuestionList = value
     }
   },
   actions: {
@@ -109,6 +109,7 @@ export default new Vuex.Store({
           console.log(e.data)
           commit('setQuestionAnswerData', e.data)
           console.log(state.questionAnswerData)
+          console.log('ID: ' + object)
           localStorage.setItem('questionId', object)
           router.push('/questionAnswer')
         })
@@ -277,6 +278,8 @@ export default new Vuex.Store({
       axios(axiosConfig)
         .then((e) => {
           console.log(e.data)
+          commit('setSearchByQuestionList', e.data)
+          router.push('/searchByQuestion')
         })
         .catch(e => console.log(e))
     },

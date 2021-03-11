@@ -6,6 +6,7 @@ import categories from '@/views/categories.vue'
 import questions from '@/views/questions.vue'
 import questionAnswer from '@/views/questionAnswer.vue'
 import notification from '@/views/notification.vue'
+import searchByQuestion from '@/views/searchByQuestion.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/notification',
     name: 'notification',
     component: notification
+  },
+  {
+    path: '/searchByQuestion',
+    name: 'searchByQuestion',
+    component: searchByQuestion
   }
 ]
 

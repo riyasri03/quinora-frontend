@@ -147,7 +147,6 @@ export default {
       padding: 20px;
       border: 1px solid lightgray;
       border-radius: 10px;
-      margin: 10px;
       margin-bottom: 20px;
       text-align: center;
     }

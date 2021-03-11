@@ -34,6 +34,7 @@ export default {
     },
     onSearch () {
       if (this.filterType === 'question') {
+        localStorage.setItem('searchTerm', this.searchTerm)
         this.$store.dispatch('searchByQuestionAction', this.searchTerm)
       } else if (this.filterType === 'answer') {
         this.$store.dispatch('searchByAnswerAction', this.searchTerm)
