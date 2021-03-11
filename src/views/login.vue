@@ -56,6 +56,7 @@ export default {
         username: this.loginUsername,
         password: this.loginPassword
       })
+      localStorage.setItem('username', this.loginUsername)
       this.loginUsername = ''
       this.loginPassword = ''
     },
@@ -64,8 +65,11 @@ export default {
         username: this.username,
         password: this.password
       })
+      localStorage.setItem('email', this.email)
+      localStorage.setItem('username', this.username)
       this.username = ''
       this.password = ''
+      this.email = ''
     }
   }
 }

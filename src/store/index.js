@@ -131,6 +131,68 @@ export default new Vuex.Store({
           router.push('/')
         })
         .catch(e => console.log(e))
+    },
+    setCategoriesAction ({ commit, state }, object) {
+      const axiosConfig = {
+        method: 'post',
+        baseURL: 'http://10.177.68.116:8081/',
+        url: '/user/save',
+        data: {
+          username: localStorage.getItem('username'),
+          category: object
+        }
+      }
+      axios(axiosConfig)
+        .then((e) => {
+          console.log(e.data)
+          alert('Registeration Successful, Please Login Now')
+          router.push('/login')
+        })
+        .catch(e => console.log(e))
+    },
+    setLikeAction ({ commit, state }, object) {
+      const axiosConfig = {
+        method: 'post',
+        baseURL: 'http://10.177.68.81:8080/',
+        url: '/reaction/randomnoob2',
+        data: {
+          answerId: object.answerId,
+          liked: object.isLiked
+        }
+      }
+      axios(axiosConfig)
+        .then((e) => {
+          console.log(e.data)
+        })
+        .catch(e => console.log(e))
+    },
+    setDislikeAction ({ commit, state }, object) {
+      const axiosConfig = {
+        method: 'post',
+        baseURL: 'http://10.177.68.81:8080/',
+        url: '/reaction/randomnoob2',
+        data: {
+          answerId: object.answerId,
+          liked: object.isLiked
+        }
+      }
+      axios(axiosConfig)
+        .then((e) => {
+          console.log(e.data)
+        })
+        .catch(e => console.log(e))
+    },
+    setGetAllQuestionsAction ({ commit, state }, object) {
+      const axiosConfig = {
+        methos: 'get',
+        baseURL: 'http://10.177.68.81:8080/',
+        url: '/question/all'
+      }
+      axios(axiosConfig)
+        .then((e) => {
+          console.log(e.data)
+        })
+        .catch(e => console.log(e))
     }
   }
 })

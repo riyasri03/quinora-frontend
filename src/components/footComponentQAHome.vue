@@ -1,7 +1,7 @@
 <template>
   <div class="conatiner">
-    <i class="fa fa-thumbs-up upvote-placement" @click="upvotes++"><span class="remove-pointer"> {{ upvotes }}</span></i>
-    <i class="fa fa-thumbs-down downvote-placement" @click="downvotes++"><span class="remove-pointer"> {{ downvotes }} </span></i>
+    <i class="fa fa-thumbs-up upvote-placement" @click="reactionLike"><span class="remove-pointer"> {{ upvotes }}</span></i>
+    <i class="fa fa-thumbs-down downvote-placement" @click="reactionDislike"><span class="remove-pointer"> {{ downvotes }} </span></i>
     <span class="remove-pointer comments-placement"> {{ comments }} </span><button class="fa fa-comments comments-placement" @click="toggleComments" :value="cid"></button>
     <div v-show="listCommentsShow">
       <commentsInputWidget :id="cid" class="show-comments" :answerId="answerId" />
@@ -39,6 +39,26 @@ export default {
       } else {
         this.listCommentsShow = true
       }
+    },
+    reactionLike () {
+      const obj = {
+        answerId: this.answerId,
+        isLiked: true
+      }
+      this.$store.dispatch('setLikeAction', obj)
+      setTimeout(() => {
+        this.$store.dispatch('setQuestionAnswerRequestDataAction')
+      }, 100)
+    },
+    reactionDislike () {
+      const obj = {
+        answerId: this.answerId,
+        isLiked: false
+      }
+      this.$store.dispatch('setDislikeAction', obj)
+      setTimeout(() => {
+        this.$store.dispatch('setQuestionAnswerRequestDataAction')
+      }, 100)
     }
   }
 }

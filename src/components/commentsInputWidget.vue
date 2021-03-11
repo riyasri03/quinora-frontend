@@ -39,7 +39,7 @@ export default {
       })
       setTimeout(() => {
         this.$store.dispatch('setQuestionAnswerRequestDataAction')
-      }, 1000)
+      }, 100)
       this.commentText = ''
     }
   }

@@ -182,6 +182,9 @@ export default {
     askQuestionHome: askQuestionHome,
     navbar: navbar,
     questionsInputWidget: questionsInputWidget
+  },
+  created () {
+    this.$store.dispatch('setGetAllQuestionsAction')
   }
 }
 </script>
