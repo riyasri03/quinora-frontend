@@ -16,6 +16,9 @@
               <div v-for="item in pageOfItems" :key="item.id" class="question-answer-card">
                 <headComponentQAHome :username="item.username" />
                 <questionComponentHome :question="item.questionText" :category="item.category" :src="item.src" :id="item.questionId" :createdAt="item.createdAt" />
+                <div v-if="item.username === currentUser">
+                  <button class="d-a-btn" @click="deleteQues" :value="item.questionId">Delete</button>
+                </div>
                 <!--<answerComponentHome :answer="item.answer" :src="item.asrc" />
                 <footComponentQAHome :comments="item.comments" :upvotes="item.upvotes" :downvotes="item.downvotes" :cid="item.qid+''+item.aid" :commentsData="commentsData" />-->
               </div>
@@ -47,13 +50,11 @@ import navbar from '../components/navbar.vue'
 import questionsInputWidget from '../components/questionsInputWidget.vue'
 const customStyles = {
   ul: {
-
   },
   li: {
     display: 'inline-block'
   },
   a: {
-
   }
 }
 const customLabels = {
@@ -70,7 +71,7 @@ export default {
       customStyles,
       customLabels,
       questionShow: false,
-      pageOfItems: []
+      pageOfItems: [],
     }
   },
   methods: {
@@ -84,6 +85,9 @@ export default {
       } else {
         this.questionShow = true
       }
+    },
+    deleteQues (event) {
+      this.$store.dispatch('deleteQuestionAction', event.target.value)
     }
   },
   components: {
@@ -149,5 +153,25 @@ export default {
       border-radius: 10px;
       margin-bottom: 20px;
       text-align: center;
+    }
+    .d-a-btn{
+      margin-top: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      appearance: none;
+      border: 1px solid #4ca7ff;
+      background: white;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      margin-left: 10px;
+      color: #4ca7ff;
+      cursor: pointer;
+    }
+    .d-a-btn:focus{
+      outline: none;
+    }
+    .d-a-btn:hover{
+      background-color: #4ca7ff;
+      color: white;
     }
 </style>

@@ -10,13 +10,15 @@
           <label>Login</label>
           </center>
           <hr>
-          <label id="tags1"> Username </label><br>
-          <input type = "text" v-model='loginUsername'>
-          <label id="tags2"> Password </label><br>
-          <input type="password" v-model="loginPassword">
-          <center>
-          <button id = "login-btn" @click='login'> Login</button>
-          </center>
+          <div class="place-whole-css">
+            <label id="tags1"> Username </label><br>
+            <input type = "text" v-model='loginUsername'>
+            <label id="tags2"> Password </label><br>
+            <input type="password" v-model="loginPassword">
+            <center>
+            <button id = "login-btn" @click='login'> Login</button>
+            </center>
+          </div>
           </div>
           <div id="left-box">
           <center>
@@ -113,19 +115,19 @@ hr{
 }
 
 #login-box{
-    margin-right: 100px;
+    margin-right: 220px;
     float: right;
     height: 500px;
     margin-top: 150px;
     border-left:darkgray solid 1px;
     padding-left: 50px;
-
 }
 
 #left-box{
     float:left;
     margin-top: 150px;
     margin-right: 50px;
+    margin-left: 50px;
     height: 500px;
 }
 
@@ -182,5 +184,7 @@ input{
     border:  rgb(16, 233, 16) solid 1px;
     cursor: pointer;
 }
-
+.place-whole-css{
+  display: inline
+}
 </style>

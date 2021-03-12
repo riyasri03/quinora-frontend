@@ -8,6 +8,7 @@ import questionAnswer from '@/views/questionAnswer.vue'
 import notification from '@/views/notification.vue'
 import searchByQuestion from '@/views/searchByQuestion.vue'
 import profile from '@/views/profile.vue'
+import searchByUser from '@/views/searchByUser.vue'
 
 Vue.use(VueRouter)
 
@@ -51,6 +52,11 @@ const routes = [
     path: '/searchByQuestion',
     name: 'searchByQuestion',
     component: searchByQuestion
+  },
+  {
+    path: '/searchByUser',
+    name: 'searchByUser',
+    component: searchByUser
   }
 ]
 

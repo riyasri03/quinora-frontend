@@ -29,7 +29,7 @@ export default {
   created () {
     const axiosConfig = {
       method: 'get',
-      baseURL: 'http://10.177.68.96:8083/',
+      baseURL: 'http://10.177.68.81:8080/',
       url: `/notification/${localStorage.getItem('username')}/viewNotification`
     }
     axios(axiosConfig)

@@ -25,7 +25,10 @@
                           <div class="q-a-parent">
                               <headComponentAnswer :username="item.userName.substring(0,1).toUpperCase() + '' + item.userName.substring(1,item.userName.length)" />
                               <answerComponentHome :answer="item.answerText.substring(0,1).toUpperCase() + '' + item.answerText.substring(1,item.answerText.length)" :src="item.src" />
-                              <footComponentQAHome :comments="item.commentList.length" :upvotes="item.likes" :downvotes="item.dislikes" :cid="item.qusetionID+''+item.id" :commentsData="item.commentList" :answerId="item.id" />
+                              <footComponentQAHome :comments="item.commentList.length" :upvotes="item.likes" :downvotes="item.dislikes" :cid="item.questionID+''+item.id" :commentsData="item.commentList" :answerId="item.id" />
+                              <div v-if="item.userName === currentUser">
+                                <button class="a-btn" @click="deleteAns(item.id, item.questionID)">Delete</button>
+                              </div>
                           </div>
                       </div>
                     </div>
@@ -53,6 +56,7 @@ export default {
   name: 'questionAnswer',
   data () {
     return {
+      currentUser: localStorage.getItem('username'),
       qText: '',
       qTitle: ''
     }
@@ -70,6 +74,13 @@ export default {
         document.getElementById(event.target.value).style.display = 'block'
       }
       console.log(document.getElementById(event.target.value).innerText)
+    },
+    deleteAns (id, questionID) {
+      const obj = {
+        qid: questionID,
+        ansid: id
+      }
+      this.$store.dispatch('deleteAnswerAction', obj)
     }
   },
   created () {

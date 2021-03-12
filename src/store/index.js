@@ -12,7 +12,8 @@ export default new Vuex.Store({
     allQuestions: [],
     particularQuestion: {},
     categoryList: [],
-    searchByQuestionList: []
+    searchByQuestionList: [],
+    searchByUserList: []
   },
   getters: {
     getQuestionAnswerData (state) {
@@ -29,6 +30,9 @@ export default new Vuex.Store({
     },
     getSearchByQuestionList (state) {
       return state.searchByQuestionList
+    },
+    getSearchByUserList (state) {
+      return state.searchByUserList
     }
   },
   mutations: {
@@ -46,6 +50,9 @@ export default new Vuex.Store({
     },
     setSearchByQuestionList (state, value) {
       state.searchByQuestionList = value
+    },
+    setSearchByUserList (state, value) {
+      state.searchByUserList = value
     }
   },
   actions: {
@@ -94,6 +101,19 @@ export default new Vuex.Store({
       axios(axiosConfig)
         .then((e) => {
           console.log(e.data)
+          const axiosConfigRe = {
+            method: 'post',
+            baseURL: 'http://10.177.68.81:8080/',
+            url: 'notification/add',
+            data: {
+              usernameAnswered: localStorage.getItem('username'),
+              questionId: object.questionId,
+              answerId: e.data.id,
+              read: true
+            }
+          }
+          axios(axiosConfigRe)
+            .then((e) => console.log(e))
         })
         .catch(e => alert('Answer Not Posted'))
     },
@@ -304,8 +324,37 @@ export default new Vuex.Store({
       axios(axiosConfig)
         .then((e) => {
           console.log(e.data)
+          commit('setSearchByUserList', e.data)
+          router.push('/searchByUser')
         })
         .catch(e => console.log(e))
+    },
+    deleteQuestionAction ({ commit, state }, object) {
+      const axiosConfig = {
+        method: 'put',
+        baseURL: 'http://10.177.68.81:8080/',
+        url: `question/${localStorage.getItem('username')}/disable/${object}`
+      }
+      axios(axiosConfig)
+        .then((e) => {
+          console.log(e.data)
+          router.go()
+        })
+    },
+    deleteAnswerAction ({ commit, state }, object) {
+      const axiosConfig = {
+        method: 'put',
+        baseURL: 'http://10.177.68.81:8080/',
+        url: `${localStorage.getItem('username')}/${object.qid}/delete`,
+        data: {
+          answerId: object.ansid
+        }
+      }
+      axios(axiosConfig)
+        .then((e) => {
+          console.log(e.data)
+          router.go()
+        })
     }
   }
 })

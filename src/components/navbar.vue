@@ -9,6 +9,7 @@
           <li><router-link to="/notification"><img src="../assets/alarm.png"/></router-link></li>
       </ul>
       <select name="filter" id="filter" v-model="filterType">
+          <option value=null>Select Filter</option>
           <option value="question">Question</option>
           <option value="answer">Answer</option>
           <option value="user">User</option>
@@ -25,7 +26,7 @@ export default {
   data () {
     return {
       searchTerm: '',
-      filterType: 'question'
+      filterType: localStorage.getItem('filterType')
     }
   },
   methods: {
@@ -35,10 +36,15 @@ export default {
     onSearch () {
       if (this.filterType === 'question') {
         localStorage.setItem('searchTerm', this.searchTerm)
+        localStorage.setItem('filterType', 'question')
         this.$store.dispatch('searchByQuestionAction', this.searchTerm)
       } else if (this.filterType === 'answer') {
+        localStorage.setItem('searchTerm', this.searchTerm)
+        localStorage.setItem('filterType', 'answer')
         this.$store.dispatch('searchByAnswerAction', this.searchTerm)
       } else if (this.filterType === 'user') {
+        localStorage.setItem('searchTerm', this.searchTerm)
+        localStorage.setItem('filterType', 'user')
         this.$store.dispatch('searchByUserAction', this.searchTerm)
       }
     }
