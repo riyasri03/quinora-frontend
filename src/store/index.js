@@ -358,6 +358,22 @@ export default new Vuex.Store({
           console.log(e.data)
           router.go()
         })
+    },
+    deleteCommentAction ({ commit, state }, object) {
+      const axiosConfig = {
+        method: 'put',
+        baseURL: 'http://10.177.68.81:8080/',
+        url: `deleteComment/${localStorage.getItem('username')}`,
+        data: {
+          commentId: object,
+          date: new Date()
+        }
+      }
+      axios(axiosConfig)
+        .then((e) => {
+          console.log(e.data)
+          router.go()
+        })
     }
   }
 })
