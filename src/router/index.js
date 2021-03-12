@@ -7,6 +7,7 @@ import questions from '@/views/questions.vue'
 import questionAnswer from '@/views/questionAnswer.vue'
 import notification from '@/views/notification.vue'
 import searchByQuestion from '@/views/searchByQuestion.vue'
+import profile from '@/views/profile.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: home
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: profile
   },
   {
     path: '/login',
