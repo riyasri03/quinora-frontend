@@ -119,9 +119,12 @@ export default new Vuex.Store({
     },
     setQuestionAnswerRequestDataAction ({ commit, state }, object) {
       const axiosConfig = {
-        method: 'get',
+        method: 'post',
         baseURL: 'http://10.177.68.81:8080/',
-        url: `${localStorage.getItem('username')}/${object}`
+        url: `${localStorage.getItem('username')}/${object}/sort`,
+        data: {
+          parameter: 'byNew'
+        }
       }
       console.log(object)
       axios(axiosConfig)

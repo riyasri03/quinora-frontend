@@ -5,7 +5,7 @@
     <h3 id="notificationTitle">Notification</h3>
     <hr>
     <div class="user-notification" v-for="notification in notifications" :key="notification.id" :class="notification.read?'not-read':'read'">
-        <p>Your <b><a @click="onclick">{{ notification.questionTitle }}</a></b> is Answered by <i>{{ notification.usernameAnswered }}</i></p>
+        <p>Your <b><a @click="onClickNot(notification.questionId)">{{ notification.questionTitle }}</a></b> is Answered by <i>{{ notification.usernameAnswered }}</i></p>
     </div>
   </div>
 </div>
@@ -21,9 +21,9 @@ export default {
       notifications: []
     }
   },
-  method: {
-    onclick () {
-      alert('Question Title')
+  methods: {
+    onClickNot (id) {
+      this.$store.dispatch('setQuestionAnswerRequestDataAction', id)
     }
   },
   created () {
